@@ -1,11 +1,10 @@
 "use client";
 import { GlobalContext } from "@/context";
 import { adminNavOptions, navOptions } from "@/utils";
-import { Fragment, useContext } from "react";
+import { Fragment, useContext, useState } from "react";
 import CommonModal from "../CommonModal";
 import Cookies from "js-cookie";
 import { usePathname, useRouter } from "next/navigation";
-
 
 const styles = {
   button:
@@ -15,33 +14,35 @@ const styles = {
 function NavItems({ isModalView = false, isAdminView, router }) {
   return (
     <div
-      className={`items-center justify-between w-full md:flex md:w-auto ${isModalView ? "" : "hidden"
-        }`}
+      className={`items-center justify-between w-full md:flex md:w-auto ${
+        isModalView ? "" : "hidden"
+      }`}
       id="nav-items"
     >
       <ul
-        className={`flex flex-col p-4 md:p-0 mt-4 font-medium  rounded-lg md:flex-row md:space-x-8 md:mt-0 md:border-0 bg-white ${isModalView ? "border-none" : "border border-gray-100"
-          }`}
+        className={`flex flex-col p-4 md:p-0 mt-4 font-medium  rounded-lg md:flex-row md:space-x-8 md:mt-0 md:border-0 bg-white ${
+          isModalView ? "border-none" : "border border-gray-100"
+        }`}
       >
         {isAdminView
           ? adminNavOptions.map((item) => (
-            <li
-              className="cursor-pointer block py-2 p1-3 pr-4 text-gray-900 rounded md:p-0"
-              key={item.id}
-              onClick={() =>router.push(item.path)}
-            >
-              {item.label}
-            </li>
-          ))
+              <li
+                className="cursor-pointer block py-2 p1-3 pr-4 text-customPurple rounded md:p-0"
+                key={item.id}
+                onClick={() => router.push(item.path)}
+              >
+                {item.label}
+              </li>
+            ))
           : navOptions.map((item) => (
-            <li
-              className="cursor-pointer block py-2 p1-3 pr-4 text-gray-900 rounded md:p-0"
-              key={item.id}
-              onClick={() =>router.push(item.path)}
-            >
-              {item.label}
-            </li>
-          ))}
+              <li
+                className="cursor-pointer block py-2 p1-3 pr-4 text-customPurple rounded md:p-0"
+                key={item.id}
+                onClick={() => router.push(item.path)}
+              >
+                {item.label}
+              </li>
+            ))}
       </ul>
     </div>
   );
@@ -49,12 +50,19 @@ function NavItems({ isModalView = false, isAdminView, router }) {
 
 export default function Navbar() {
   const { showNavModal, setShowNavModal } = useContext(GlobalContext);
-  const { user, setUser, isAuthUser, setIsAuthUser } = useContext(GlobalContext);
+  const { user, setUser, isAuthUser, setIsAuthUser } =
+    useContext(GlobalContext);
+
+  const [searchQuery, setSearchQuery] = useState();
 
   const pathName = usePathname();
   const router = useRouter();
 
   console.log(pathName);
+
+  function handleSearch() {
+    console.log("Searching for:", searchQuery);
+  }
 
   function handleLogout() {
     setIsAuthUser(false);
@@ -64,13 +72,16 @@ export default function Navbar() {
     router.push("/");
   }
 
-  const isAdminView = pathName.includes('admin-view')
+  const isAdminView = pathName.includes("admin-view");
 
   return (
     <>
       <nav className="bg-white fixed w-full z-20 top-0 left-0 border-b border-gray-200">
-        <div className="max-w-screen-2xl flex flex-wrap items-center justify-between mx-auto p-4  text-black">
-          <div onClick={() => router.push('/')} className="flex items-center cursor-pointer">
+        <div className="max-w-screen-2xl flex flex-wrap items-center justify-between mx-auto p-4 text-black">
+          <div
+            onClick={() => router.push("/")}
+            className="flex items-center cursor-pointer"
+          >
             <img
               src="/img/logo.png" // Logo dosyanızın yolu
               alt="Logo"
@@ -78,19 +89,35 @@ export default function Navbar() {
             />
           </div>
 
+          <div className="flex items-center flex-grow max-w-md">
+            <input
+              type="text"
+              placeholder="Yeni ve kullanılmış müzik aletleri için alışveriş yapın..."
+              className="border border-customPurple rounded-md p-2 mr-2 text-xs font-medium flex-grow"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+            />
+            <button
+              onClick={handleSearch}
+              className="bg-customPurple px-4 py-2 text-white rounded-md text-xs font-medium"
+            >
+              Search
+            </button>
+          </div>
+
           <div className="flex md:order-2 gap-2">
             {!isAdminView && isAuthUser ? (
               <Fragment>
                 <button
                   className={
-                    "mt-1.5 inline-block bg-black px-5 py-3 text-xs font-medium upprcase tracking-wide text-white"
+                    "mt-1.5 inline-block bg-customPurple px-5 py-3 text-xs font-medium upprcase tracking-wide text-white rounded-md"
                   }
                 >
                   Hesap
                 </button>
                 <button
                   className={
-                    "mt-1.5 inline-block bg-black px-5 py-3 text-xs font-medium upprcase tracking-wide text-white"
+                    "mt-1.5 inline-block bg-customPurple px-5 py-3 text-xs font-medium upprcase tracking-wide text-white rounded-md"
                   }
                 >
                   Sepet
@@ -101,16 +128,17 @@ export default function Navbar() {
               isAdminView ? (
                 <button
                   className={
-                    "mt-1.5 inline-block bg-black px-5 py-3 text-xs font-medium upprcase tracking-wide text-white"
+                    "mt-1.5 inline-block bg-customPurple px-5 py-3 text-xs font-medium upprcase tracking-wide text-white rounded-md"
                   }
-                  onClick={() => router.push('/')}
+                  onClick={() => router.push("/")}
                 >
                   Client View
                 </button>
               ) : (
-                <button onClick={() => router.push('/admin-view')}
+                <button
+                  onClick={() => router.push("/admin-view")}
                   className={
-                    "mt-1.5 inline-block bg-black px-5 py-3 text-xs font-medium upprcase tracking-wide text-white"
+                    "mt-1.5 inline-block bg-customPurple px-5 py-3 text-xs font-medium upprcase tracking-wide text-white rounded-md"
                   }
                 >
                   Satış Yap
@@ -121,15 +149,16 @@ export default function Navbar() {
               <button
                 onClick={handleLogout}
                 className={
-                  "mt-1.5 inline-block bg-black px-5 py-3 text-xs font-medium upprcase tracking-wide text-white"
+                  "mt-1.5 inline-block bg-customPurple px-5 py-3 text-xs font-medium upprcase tracking-wide text-white rounded-md"
                 }
               >
                 Çıkış Yap
               </button>
             ) : (
-              <button onClick={() => router.push('/login')}
+              <button
+                onClick={() => router.push("/login")}
                 className={
-                  "mt-1.5 inline-block bg-black px-5 py-3 text-xs font-medium upprcase tracking-wide text-white"
+                  "mt-1.5 inline-block bg-customPurple px-5 py-3 text-xs font-medium upprcase tracking-wide text-white rounded-md"
                 }
               >
                 Giriş Yap
@@ -159,12 +188,18 @@ export default function Navbar() {
               </svg>
             </button>
           </div>
-          <NavItems router={router} isAdminView={isAdminView}/>
+          <NavItems router={router} isAdminView={isAdminView} />
         </div>
       </nav>
       <CommonModal
         showModalTitle={false}
-        mainContent={<NavItems router={router} isModalView={true} isAdminView={isAdminView}/>}
+        mainContent={
+          <NavItems
+            router={router}
+            isModalView={true}
+            isAdminView={isAdminView}
+          />
+        }
         show={showNavModal}
         setShow={setShowNavModal}
       />
