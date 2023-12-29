@@ -10,6 +10,7 @@ import { addNewProduct } from "@/services/product";
 import {
   AvailableSizes,
   adminAddProductformControls,
+  getCategoryOptions,
   firebaseConfig,
   firebaseStorageURL,
 } from "@/utils";
@@ -63,16 +64,16 @@ const initialFormData = {
   phone: "05071167922",
   brand: "Fender",
   model: "Stratocaster",
-  condition: "",
+  condition: "new",
   year: 2007,
   finish: "Sunburst",
   manufacturer: "Mexico",
-  category: "Elektro Gitar",
-  subCategory: "HSS manyetikli",
+  category: "aksesuar",
+  subCategory: "kablo",
   listingTitle: "Uygun fiyata hss fender strat 2007 sunburst",
   description: "Az kullanılmış iyi durumda fender strat hss",
   price: 25000,
-  onSale: "",
+  onSale: "forSale",
   priceDrop: 0,
   imageUrl: "",
   sizes: [],
@@ -142,6 +143,14 @@ export default function AdminAddNewProduct() {
     }
   }
 
+  const handleCategoryChange = (selectedCategory) => {
+    setFormData({
+      ...formData,
+      category: selectedCategory,
+      subCategory: '', // Reset subcategory when category changes
+    });
+  };
+
   console.log(formData);
 
   return (
@@ -177,13 +186,21 @@ export default function AdminAddNewProduct() {
             ) : controlItem.componentType === "select" ? (
               <SelectComponent
                 label={controlItem.label}
-                options={controlItem.options}
+                options={
+                  controlItem.id === "subCategory" && controlItem.dependsOn
+                    ? getCategoryOptions(formData.category) 
+                    : controlItem.options
+                }
                 value={formData[controlItem.id]}
                 onChange={(event) => {
-                  setFormData({
-                    ...formData,
-                    [controlItem.id]: event.target.value,
-                  });
+                  if (controlItem.id === "category") {
+                    handleCategoryChange(event.target.value);
+                  } else {
+                    setFormData({
+                      ...formData,
+                      [controlItem.id]: event.target.value,
+                    });
+                  }
                 }}
               />
             ) : null

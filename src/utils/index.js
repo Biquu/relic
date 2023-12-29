@@ -68,6 +68,7 @@ export const registrationFormControls = [
     label: "Role",
     componentType: "select",
     options: [
+      
       {
         id: "seller",
         label: "Satıcı",
@@ -96,6 +97,7 @@ export const loginFormControls = [
     componentType: "input",
   },
 ];
+
 
 export const adminAddProductformControls = [
   {
@@ -168,16 +170,34 @@ export const adminAddProductformControls = [
   {
     id: "category",
     type: "text",
-    placeholder: "Ürününüzün kategorisini giriniz",
+    placeholder: "Ürününüzün kategorisini seçiniz",
     label: "Kategori",
-    componentType: "input",
+    componentType: "select",
+    options: [
+      { id: "aksesuar", label: "Aksesuar" },
+      { id: "akustikGitar", label: "Akustik Gitar" },
+      { id: "klasikGitar", label: "Klasik Gitar" },
+      { id: "amfi", label: "Amfi" },
+      { id: "bassGitar", label: "Bass Gitar" },
+      { id: "djStüdyo", label: "DJ / Stüdyo" },
+      { id: "davulVePerküsyon", label: "Davul ve Perküsyon" },
+      { id: "efektVePedal", label: "Efekt ve Pedal" },
+      { id: "elektroGitar", label: "Elektro Gitar" },
+      { id: "yaylılar", label: "Yaylılar" },
+      { id: "nefesliler", label: "Nefesliler" },
+      { id: "seslendirme", label: "Seslendirme" },
+      { id: "klavyeler", label: "Klavyeler" },
+    ],
   },
   {
     id: "subCategory",
     type: "text",
-    placeholder: "Ürününüzün alt kategorisini giriniz",
+    placeholder: "Ürününüzün alt kategorisini seçiniz",
     label: "Alt Kategori",
-    componentType: "input",
+    componentType: "select",
+    dependsOn: "category",
+    options: [],
+    
   },
 
   {
@@ -208,8 +228,8 @@ export const adminAddProductformControls = [
     label: "Satış Durumu",
     componentType: "select",
     options: [
-      { value: "forSale", label: "Satılık" },
-      { value: "sold", label: "Satılmış" },
+      { id: "forSale", label: "Satılık" },
+      { id: "sold", label: "Satılmış" },
     ],
   },
   {
@@ -220,6 +240,185 @@ export const adminAddProductformControls = [
     componentType: "input",
   },
 ];
+export const getCategoryOptions = (selectedCategory) => {
+  let subCategoryOptions = ["kablo"];
+
+  switch (selectedCategory) {
+    case "aksesuar":
+      subCategoryOptions = [
+        { id: "kablo", label: "Kablo" },
+        { id: "kapo", label: "Kapo" },
+        { id: "aski", label: "Askı" },
+        { id: "cantaVeCase", label: "Çanta ve Case" },
+        { id: "metronomVeAkortCihazi", label: "Metronom ve Akort Cihazı" },
+        { id: "standlar", label: "Standlar" },
+        { id: "penalar", label: "Penalar" },
+        { id: "fretwrap", label: "Fretwrap" },
+        { id: "teller", label: "Teller" },
+        { id: "slideYuzugu", label: "Slide Yüzüğü" },
+        { id: "temizlikVeBakimUrunleri", label: "Temizlik ve Bakım Ürünleri" },
+        { id: "notaSehpasi", label: "Nota Sehpası" },
+      ];
+      break;
+    case "akustikGitar":
+      subCategoryOptions = [
+        { id: "akustikgitarlar", label: "Akustik Gitarlar" },
+        { id: "elektroakustikgitarlar", label: "Elektro Akustik Gitarlar" },
+        { id: "solakAkustikGitarlar", label: "Solak Akustik Gitarlar" },
+        { id: "12TellAkustikGitarlar", label: "12 Telli Akustik Gitarlar" },
+        { id: "akustikBasGitarlar", label: "Akustik Bas Gitarlar" },
+      ];
+      break;
+    case "klasikGitar":
+      subCategoryOptions = [
+        { id: "elektroklasikgitarlar", label: "Elektro Klasik Gitarlar" },
+        { id: "4-4KlasikGitarlar", label: "4/4 Klasik Gitarlar" },
+        { id: "3-4KlasikGitarlar", label: "¾ Klasik Gitarlar" },
+        { id: "2-4KlasikGitarlar", label: "2/4 Klasik Gitarlar" },
+        { id: "solakAkustikGitarlar", label: "Solak Akustik Gitarlar" },
+      ];
+      break;
+    case "amfi":
+      subCategoryOptions = [
+        { id: "elektrogitaramfileri", label: "Elektro Gitar Amfileri" },
+        { id: "basguitaramfileri", label: "Bas Gitar Amfileri" },
+        { id: "akustikenstrumanamfileri", label: "Akustik Enstrüman Amfileri" },
+        { id: "klavyeamfileri", label: "Klavye Amfileri" },
+        { id: "elektronikdavulmonitorleri", label: "Elektronik Davul Monitörleri" },
+      ];
+      break;
+    case "bassGitar":
+      subCategoryOptions = [
+        { id: "bassgitarlar", label: "Bass Gitarlar" },
+        { id: "solakBassGitarlar", label: "Solak Bass Gitarlar" },
+      ];
+      break;
+    case "djStüdyo":
+      subCategoryOptions = [
+        { id: "seskartlari", label: "Ses Kartları" },
+        { id: "monitörler", label: "Monitörler" },
+        { id: "midiklavyeler", label: "Midi Klavyeler" },
+        { id: "kayitsetleri", label: "Kayıt Setleri" },
+        { id: "djekipmanlari", label: "DJ Ekipmanları" },
+        { id: "mikrofonlar", label: "Mikrofonlar" },
+        { id: "kulakliklar", label: "Kulaklıklar" },
+        { id: "kablolar", label: "Kablolar" },
+        { id: "yazilimlar", label: "Yazılımlar" },
+      ];
+      break;
+    case "davulVePerküsyon":
+      subCategoryOptions = [
+        { id: "akustikdavullar", label: "Akustik Davullar" },
+        { id: "elektronikdavullar", label: "Elektronik Davullar" },
+        { id: "perküsyonlar", label: "Perküsyonlar" },
+        { id: "ziller", label: "Ziller" },
+        { id: "bagetlervemalletler", label: "Bagetler ve Malletler" },
+        { id: "deriler", label: "Deriler" },
+        { id: "sehpalarveaksamlar", label: "Sehpalar ve Aksamlar" },
+        { id: "davulmikrofonlari", label: "Davul Mikrofonları" },
+        { id: "yedekparcalar", label: "Yedek Parçalar" },
+      ];
+      break;
+    case "efektVePedal":
+      subCategoryOptions = [
+        { id: "basspedallari", label: "Bass Pedalları" },
+        { id: "kabinsimulasyonlari", label: "Kabin Simülasyonları" },
+        { id: "chorus", label: "Chorus" },
+        { id: "delay", label: "Delay" },
+        { id: "vibrato", label: "Vibrato" },
+        { id: "buffer", label: "Buffer" },
+        { id: "compression", label: "Compression" },
+        { id: "sustain", label: "Sustain" },
+        { id: "distortion", label: "Distortion" },
+        { id: "EQ", label: "EQ" },
+        { id: "flanger", label: "Flanger" },
+        { id: "fuzz", label: "Fuzz" },
+        { id: "loop", label: "Loop" },
+        { id: "octave", label: "Octave" },
+        { id: "overdrive", label: "Overdrive" },
+        { id: "boost", label: "Boost" },
+        { id: "preamps", label: "Preamps" },
+        { id: "reverb", label: "Reverb" },
+        { id: "tremolo", label: "Tremolo" },
+        { id: "akortpedallari", label: "Akort Pedalları" },
+        { id: "wahpedallari", label: "Wah Pedalları" },
+      ];
+      break;
+    case "elektroGitar":
+      subCategoryOptions = [
+        { id: "12telli", label: "12 Telli" },
+        { id: "bariton", label: "Bariton" },
+        { id: "tenor", label: "Tenor" },
+        { id: "hhmanyetikli", label: "HH Manyetikli" },
+        { id: "hshmanyetikli", label: "HSH Manyetikli" },
+        { id: "hssmanyetikli", label: "HSS Manyetikli" },
+        { id: "ssmanyetikli", label: "SS Manyetikli" },
+        { id: "sssmanyetikli", label: "SSS Manyetikli" },
+        { id: "hsmanyetikli", label: "HS Manyetikli" },
+      ];
+      break;
+    case "yaylılar":
+      subCategoryOptions = [
+        { id: "keman", label: "Keman" },
+        { id: "viyola", label: "Viyola" },
+        { id: "cello", label: "Çello" },
+        { id: "kontrabass", label: "Kontrabas" },
+        { id: "yayliaksesuarlari", label: "Yaylı Aksesuarları" },
+      ];
+      break;
+    case "nefesliler":
+      subCategoryOptions = [
+        { id: "elektroniknefesli", label: "Elektronik Nefesli" },
+        { id: "blokflut", label: "Blok Flüt" },
+        { id: "yanflut", label: "Yan Flüt" },
+        { id: "obua", label: "Obua" },
+        { id: "fagot", label: "Fagot" },
+        { id: "klarnet", label: "Klarnet" },
+        { id: "saksafon", label: "Saksafon" },
+        { id: "korno", label: "Korno" },
+        { id: "tuba", label: "Tuba" },
+        { id: "trompet", label: "Trompet" },
+        { id: "kornet", label: "Kornet" },
+        { id: "flugelhorn", label: "Flugelhorn" },
+        { id: "trombon", label: "Trombon" },
+        { id: "bariton", label: "Bariton" },
+        { id: "euphonium", label: "Euphonium" },
+        { id: "melodikavemizika", label: "Melodika ve Mızıka" },
+        { id: "nefesliaksesuaryedekparca", label: "Nefesli Aksesuar Yedek Parça" },
+      ];
+      break;
+    case "seslendirme":
+      subCategoryOptions = [
+        { id: "evesessistemlerivesoundbar", label: "Eve Ses Sistemleri ve Soundbar" },
+        { id: "monitörler", label: "Monitörler" },
+        { id: "poweramfiler", label: "Power Amfiler" },
+        { id: "seslendirmesetleri", label: "Seslendirme Setleri" },
+        { id: "hoparlor", label: "Hoparlör" },
+        { id: "bluetoothhoparlor", label: "Bluetooth Hoparlör" },
+        { id: "mikserler", label: "Mikserler" },
+        { id: "pikap", label: "Pikap" },
+        { id: "plak", label: "Plak" },
+        { id: "seslendirmeaksesuarlari", label: "Seslendirme Aksesuarları" },
+      ];
+      break;
+    case "klavyeler":
+      subCategoryOptions = [
+        { id: "orglar", label: "Orglar" },
+        { id: "arrangerklavye", label: "Arranger Klavye" },
+        { id: "synthesizer", label: "Synthesizer" },
+        { id: "sesmodulleri", label: "Ses Modülleri" },
+        { id: "midiklavyeler", label: "Midi Klavyeler" },
+        { id: "klavyeamfileri", label: "Klavye Amfileri" },
+        { id: "akordiyonlar", label: "Akordiyonlar" },
+        { id: "klavyeaksesuarli", label: "Klavye Aksesuarlı" },
+      ];
+      break;
+    default:
+      subCategoryOptions = [];
+  }
+  return subCategoryOptions;
+};
+
 
 export const AvailableSizes = [
   {
