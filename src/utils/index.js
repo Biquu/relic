@@ -10,16 +10,6 @@ export const navOptions = [
     path: "/product/listing/all-products",
   },
   {
-    id: "listingMen",
-    label: "Enstrümanlar",
-    path: "/product/listing/men",
-  },
-  {
-    id: "listingWomen",
-    label: "Ekipmanlar",
-    path: "/product/listing/women",
-  },
-  {
     id: "listingKids",
     label: "Kampanyalar",
     path: "/product/listing/kids",

@@ -101,7 +101,7 @@ export async function POST(req) {
       });
     }
   } catch (error) {
-    console.log(e);
+    console.log(error);
     return NextResponse.json({
       success: false,
       message: "Something went wrong ! Please try again later",

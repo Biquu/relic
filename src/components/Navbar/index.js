@@ -1,7 +1,7 @@
 "use client";
 import { GlobalContext } from "@/context";
 import { adminNavOptions, navOptions } from "@/utils";
-import { Fragment, useContext, useState } from "react";
+import { Fragment, useContext, useState, useEffect } from "react";
 import CommonModal from "../CommonModal";
 import Cookies from "js-cookie";
 import { usePathname, useRouter } from "next/navigation";
@@ -50,17 +50,32 @@ function NavItems({ isModalView = false, isAdminView, router }) {
 
 export default function Navbar() {
   const { showNavModal, setShowNavModal } = useContext(GlobalContext);
-  const { user, setUser, isAuthUser, setIsAuthUser } =
-    useContext(GlobalContext);
+  const {
+    user,
+    setUser,
+    isAuthUser,
+    setIsAuthUser,
+    currentUpdatedProduct,
+    setCurrentUpdatedProduct,
+  } = useContext(GlobalContext);
 
-  const [searchQuery, setSearchQuery] = useState();
+  const [searchQuery, setSearchQuery] = useState(); //zort
 
   const pathName = usePathname();
   const router = useRouter();
 
-  console.log(pathName);
+  console.log(currentUpdatedProduct, 'navbar');
+
+  useEffect(() => {
+    if (
+      pathName !== "/admin-view/add-product" &&
+      currentUpdatedProduct !== null
+    )
+      setCurrentUpdatedProduct(null);
+  }, [pathName]);
 
   function handleSearch() {
+    //zort
     console.log("Searching for:", searchQuery);
   }
 
@@ -77,13 +92,13 @@ export default function Navbar() {
   return (
     <>
       <nav className="bg-white fixed w-full z-20 top-0 left-0 border-b border-gray-200">
-        <div className="max-w-screen-2xl flex flex-wrap items-center justify-between mx-auto p-4 text-black">
+        <div className="max-w-screen-2xl flex flex-wrap items-center justify-between mx-auto p-2 text-black">
           <div
             onClick={() => router.push("/")}
             className="flex items-center cursor-pointer"
           >
             <img
-              src="/img/logo.png" // Logo dosyanızın yolu
+              src="/img/relic.svg" // Logo dosyanızın yolu
               alt="Logo"
               className="self-center h-16"
             />

@@ -6,7 +6,7 @@ import TileComponent from "@/components/FormElements/TileComponent";
 import Notification from "@/components/Notification";
 import ComponentLevelLoader from "@/components/Loader/componentlevel";
 import { GlobalContext } from "@/context";
-import { addNewProduct } from "@/services/product";
+import { addNewProduct, updateAProduct } from "@/services/product";
 import {
   AvailableSizes,
   adminAddProductformControls,
@@ -21,7 +21,7 @@ import {
   ref,
   uploadBytesResumable,
 } from "firebase/storage";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import { useRouter } from "next/navigation";
 
@@ -59,33 +59,41 @@ async function helperForUPloadingImageToFirebase(file) {
 }
 
 const initialFormData = {
-  shopName: "Biquu",
-  name: "Bilal Ergin Demirci",
-  phone: "05071167922",
-  brand: "Fender",
-  model: "Stratocaster",
+  shopName: "",
+  name: "",
+  phone: "",
+  brand: "",
+  model: "",
   condition: "new",
   year: 2007,
-  finish: "Sunburst",
-  manufacturer: "Mexico",
+  finish: "",
+  manufacturer: "",
   category: "aksesuar",
   subCategory: "kablo",
-  listingTitle: "Uygun fiyata hss fender strat 2007 sunburst",
-  description: "Az kullanılmış iyi durumda fender strat hss",
-  price: 25000,
+  listingTitle: "",
+  description: "",
+  price: 0,
   onSale: "forSale",
   priceDrop: 0,
   imageUrl: "",
-  sizes: [],
 };
 
 export default function AdminAddNewProduct() {
   const [formData, setFormData] = useState(initialFormData);
 
-  const { componentLevelLoader, setComponentLevelLoader } =
+  const { componentLevelLoader, setComponentLevelLoader, currentUpdatedProduct,
+    setCurrentUpdatedProduct,} =
     useContext(GlobalContext);
 
+    console.log(currentUpdatedProduct)
+
   const router = useRouter();
+
+    useEffect(()=> {
+      
+      if(currentUpdatedProduct !== null) setFormData(currentUpdatedProduct)
+    },[currentUpdatedProduct])
+
 
   async function handleImage(event) {
     console.log(event.target.files);
@@ -102,25 +110,28 @@ export default function AdminAddNewProduct() {
     }
   }
 
-  function handleTileClick(getCurrentItem) {
-    let cpySizes = [...formData.sizes];
-    const index = cpySizes.findIndex((item) => item.id === getCurrentItem.id);
+  // function handleTileClick(getCurrentItem) {
+  //   let cpySizes = [...formData.sizes];
+  //   const index = cpySizes.findIndex((item) => item.id === getCurrentItem.id);
 
-    if (index === -1) {
-      cpySizes.push(getCurrentItem);
-    } else {
-      cpySizes = cpySizes.filter((item) => item.id !== getCurrentItem.id);
-    }
+  //   if (index === -1) {
+  //     cpySizes.push(getCurrentItem);
+  //   } else {
+  //     cpySizes = cpySizes.filter((item) => item.id !== getCurrentItem.id);
+  //   }
 
-    setFormData({
-      ...formData,
-      sizes: cpySizes,
-    });
-  }
+  //   setFormData({
+  //     ...formData,
+  //     sizes: cpySizes,
+  //   });
+  // }
 
   async function handleAddProduct() {
     setComponentLevelLoader({ loading: true, id: "" });
-    const res = await addNewProduct(formData);
+    const res =
+    currentUpdatedProduct !== null
+      ? await updateAProduct(formData)
+      : await addNewProduct(formData);
 
     console.log(res);
 
@@ -155,8 +166,8 @@ export default function AdminAddNewProduct() {
 
   return (
     <div className="flex flex-col items-center justify-between pt-2 pr-10 pb-2 pl-10 mt-8 mx-auto xl:px-5 lg:flex-row relative ">
-      <div className="flex flex-col items-start justify-start p-10 bg-white   border-opacity-80 rounded-xl relative mr-auto">
-        <label className="w-full text-4xl font-medium text-center font-serif text-customPurple">
+      <div className="flex flex-col items-start justify-start p-10 bg-white   border-opacity-80 rounded-xl relative mr-auto shadow-xl">
+        <label className="w-full text-4xl font-medium text-center font-serif text-black">
           Lütfen Ürün Hakkında Bilgi Veriniz
         </label>
         <div className="w-full mt-8 mr-0 mb-0 ml-0 relative space-y-8">
