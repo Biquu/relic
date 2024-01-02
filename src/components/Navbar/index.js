@@ -5,6 +5,7 @@ import { Fragment, useContext, useState, useEffect } from "react";
 import CommonModal from "../CommonModal";
 import Cookies from "js-cookie";
 import { usePathname, useRouter } from "next/navigation";
+import CartModal from "../CartModal";
 
 const styles = {
   button:
@@ -94,6 +95,8 @@ export default function Navbar() {
     setIsAuthUser,
     currentUpdatedProduct,
     setCurrentUpdatedProduct,
+    showCartModal,
+    setShowCartModal,
   } = useContext(GlobalContext);
 
   const [searchQuery, setSearchQuery] = useState(); //zort
@@ -171,6 +174,7 @@ export default function Navbar() {
                   className={
                     "mt-1.5 inline-block bg-customPurple px-5 py-3 text-xs font-medium upprcase tracking-wide text-white rounded-md"
                   }
+                  onClick={() => setShowCartModal(true)}
                 >
                   Sepet
                 </button>
@@ -256,6 +260,7 @@ export default function Navbar() {
         show={showNavModal}
         setShow={setShowNavModal}
       />
+      {showCartModal && <CartModal />}
     </>
   );
 }
