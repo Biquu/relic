@@ -142,7 +142,7 @@ export default function AdminAddNewProduct() {
       });
 
       setFormData(initialFormData);
-      setCurrentUpdatedProduct(null);
+      setCurrentUpdatedProduct(null)
       setTimeout(() => {
         router.push("/admin-view/all-products");
       }, 1000);
@@ -154,6 +154,8 @@ export default function AdminAddNewProduct() {
       setFormData(initialFormData);
     }
   }
+
+  console.log(formData);
 
   const handleCategoryChange = (selectedCategory) => {
     setFormData({

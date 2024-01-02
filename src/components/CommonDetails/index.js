@@ -1,6 +1,39 @@
 "use client";
 
+import { GlobalContext } from "@/context";
+import { useContext } from "react";
+import { toast } from "react-toastify";
+import ComponentLevelLoader from "../Loader/componentlevel";
+import { addToCart } from "@/services/cart";
+import Notification from "../Notification";
+
 export default function CommonDetails({ item }) {
+  const {
+    setComponentLevelLoader,
+    componentLevelLoader,
+    user,
+    setShowCartModal,
+  } = useContext(GlobalContext);
+
+  async function handleAddToCart(getItem) {
+    setComponentLevelLoader({ loading: true, id: "" });
+
+    const res = await addToCart({ productID: getItem._id, userID: user._id });
+
+    if (res.success) {
+      toast.success(res.message, {
+        position: toast.POSITION.TOP_RIGHT,
+      });
+      setComponentLevelLoader({ loading: false, id: "" });
+      setShowCartModal(true);
+    } else {
+      toast.error(res.message, {
+        position: toast.POSITION.TOP_RIGHT,
+      });
+      setComponentLevelLoader({ loading: false, id: "" });
+      setShowCartModal(true);
+    }
+  }
   return (
     <section className="mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-8">
       <div className="container mx-auto px-4">
@@ -54,7 +87,7 @@ export default function CommonDetails({ item }) {
                   }`}
                 >
                   {" "}
-                  ${item && item.price}
+                  ₺{item && item.price}
                 </h1>
                 {item.priceDrop > 0 ? (
                   <h1 className="mr-3 text-sm font-semibold text-red-700">{`₺ ${(
@@ -68,9 +101,20 @@ export default function CommonDetails({ item }) {
               </div>
               <button
                 type="button"
+                onClick={() => handleAddToCart(item)}
                 className="bg-customPurple px-5 py-3 text-white rounded-md text-sm font-medium"
               >
-                Add to cart
+                {componentLevelLoader && componentLevelLoader.loading ? (
+                  <ComponentLevelLoader
+                    text={"Sepete Ekleniyor"}
+                    color={"#ffffff"}
+                    loading={
+                      componentLevelLoader && componentLevelLoader.loading
+                    }
+                  />
+                ) : (
+                  "Sepete Ekle"
+                )}
               </button>
             </div>
             <ul className="mt-8 space-y-2">
@@ -90,7 +134,7 @@ export default function CommonDetails({ item }) {
                   href="#"
                   className="border-b-2 border-gray-900 py-4 text-sm font-medium text-gray-900"
                 >
-                  Description
+                  Açıklama
                 </a>
               </nav>
             </div>
@@ -100,6 +144,7 @@ export default function CommonDetails({ item }) {
           </div>
         </div>
       </div>
+      <Notification/>
     </section>
   );
 }
