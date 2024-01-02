@@ -15,10 +15,8 @@ const AdminAddNewProductSchema = Joi.object({
   manufacturer: Joi.string(),
   category: Joi.string().required(),
   subCategory: Joi.string().required(),
-  listingTitle: Joi.string().required(),
   description: Joi.string().required(),
   price: Joi.number().required(),
-  onSale: Joi.string().required(),
   priceDrop: Joi.number().required(),
   imageUrl: Joi.string().required(),
 });
@@ -46,10 +44,8 @@ export async function POST(req) {
         manufacturer,
         category,
         subCategory,
-        listingTitle,
         description,
         price,
-        onSale,
         priceDrop,
         imageUrl,
       } = extractData;
@@ -66,10 +62,8 @@ export async function POST(req) {
         manufacturer,
         category,
         subCategory,
-        listingTitle,
         description,
         price,
-        onSale,
         priceDrop,
         imageUrl,
       });

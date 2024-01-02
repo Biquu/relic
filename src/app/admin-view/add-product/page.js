@@ -70,10 +70,9 @@ const initialFormData = {
   manufacturer: "",
   category: "aksesuar",
   subCategory: "kablo",
-  listingTitle: "",
   description: "",
   price: 0,
-  onSale: "forSale",
+ 
   priceDrop: 0,
   imageUrl: "",
 };

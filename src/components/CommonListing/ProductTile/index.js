@@ -1,8 +1,15 @@
 "use client";
 
+import { useRouter } from "next/navigation";
+
 export default function ProductTile({ item }) {
+  const router = useRouter();
+
   return (
-    <div className="mx-auto">
+    <div
+      className="mx-auto"
+      onClick={() => router.push(`/product/${item._id}`)}
+    >
       <div className="overflow-hiden aspect-w-1 aspect-h-1 h-64 w-64 mx-auto">
         <img
           src={item.imageUrl}
@@ -10,7 +17,7 @@ export default function ProductTile({ item }) {
           className="h-full w-full object-cover transition-all duration-300 group-hover:scale-125"
         />
       </div>
-      {item.onSale === "forSale" ? (
+      {item.priceDrop > 0 ? (
         <div className="absolute top-0 m-2 rounded-full bg-customPurple">
           <p className="rounded-full  p-1 text-[8px] font-bold uppercase tracking-wide text-white sm:py-1 sm:px-3">
             Sale
@@ -19,7 +26,20 @@ export default function ProductTile({ item }) {
       ) : null}
       <div className="my-4 mx-auto flex w-10/12 flex-col items-start justify-between">
         <div className="mb-2 flex">
-          <p className="mr-3 text-sm font-semibold">{`₺ ${item.price}`}</p>
+          <p
+            className={`mr-3 text-sm font-semibold ${
+              item.priceDrop > 0 ? "line-through" : ""
+            }`}
+          >{`₺ ${item.price}`}</p>
+          {item.priceDrop > 0 ? (
+            <p className="mr-3 text-sm font-semibold text-red-700">{`$ ${(
+              item.price -
+              item.price * (item.priceDrop / 100)
+            ).toFixed(2)}`}</p>
+          ) : null}
+          {item.priceDrop > 0 ? (
+            <p className="mr-3 text-sm font-semibold">{`(${item.priceDrop}%)off`}</p>
+          ) : null}
         </div>
         <h3 className="md-2 text-gray-400 text-sm">{item.name}</h3>
       </div>

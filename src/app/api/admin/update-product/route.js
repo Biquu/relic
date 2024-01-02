@@ -25,10 +25,9 @@ export async function PUT(req) {
         manufacturer,
         category,
         subCategory,
-        listingTitle,
+
         description,
         price,
-        onSale,
         priceDrop,
         imageUrl,
       } = extractData;
@@ -49,10 +48,8 @@ export async function PUT(req) {
             manufacturer,
             category,
             subCategory,
-            listingTitle,
             description,
             price,
-            onSale,
             priceDrop,
             imageUrl,
         },

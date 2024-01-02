@@ -79,8 +79,8 @@ export const registrationFormControls = [
   {
     id: "name",
     type: "text",
-    placeholder: "İsminizi giriniz",
-    label: "İsim",
+    placeholder: "Ürününüze başlık Giriniz",
+    label: "Başlık",
     componentType: "input",
   },
   {
@@ -235,14 +235,6 @@ export const adminAddProductformControls = [
     options: [],
     
   },
-
-  {
-    id: "listingTitle",
-    type: "text",
-    placeholder: "Ürününüzün başlığını giriniz",
-    label: "Başlık",
-    componentType: "input",
-  },
   {
     id: "description",
     type: "text",
@@ -258,21 +250,10 @@ export const adminAddProductformControls = [
     componentType: "input",
   },
   {
-    id: "onSale",
-    type: "",
-    placeholder: "",
-    label: "Satış Durumu",
-    componentType: "select",
-    options: [
-      { id: "forSale", label: "Satılık" },
-      { id: "sold", label: "Satılmış" },
-    ],
-  },
-  {
     id: "priceDrop",
     type: "number",
-    placeholder: "Ürününüzün indirimini giriniz",
-    label: "İndirim",
+    placeholder: "Ürününüzün indirim oranını giriniz",
+    label: "İndirim Oranı",
     componentType: "input",
   },
 ];

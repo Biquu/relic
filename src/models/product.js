@@ -13,10 +13,9 @@ const ProductSchema = new mongoose.Schema(
     manufacturer: String,
     category: String,
     subCategory: String,
-    listingTitle: String,
+
     description: String,
     price: Number,
-    onSale: String,
     priceDrop: Number,
     imageUrl: String,
   },
