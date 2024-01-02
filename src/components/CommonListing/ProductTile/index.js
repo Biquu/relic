@@ -32,7 +32,7 @@ export default function ProductTile({ item }) {
             }`}
           >{`₺ ${item.price}`}</p>
           {item.priceDrop > 0 ? (
-            <p className="mr-3 text-sm font-semibold text-red-700">{`$ ${(
+            <p className="mr-3 text-sm font-semibold text-red-700">{`₺ ${(
               item.price -
               item.price * (item.priceDrop / 100)
             ).toFixed(2)}`}</p>

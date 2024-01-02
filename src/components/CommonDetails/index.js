@@ -57,7 +57,7 @@ export default function CommonDetails({ item }) {
                   ${item && item.price}
                 </h1>
                 {item.priceDrop > 0 ? (
-                  <h1 className="mr-3 text-sm font-semibold text-red-700">{`$ ${(
+                  <h1 className="mr-3 text-sm font-semibold text-red-700">{`₺ ${(
                     item.price -
                     item.price * (item.priceDrop / 100)
                   ).toFixed(2)}`}</h1>

@@ -9,7 +9,7 @@ import CartModal from "../CartModal";
 
 const styles = {
   button:
-    "mt-1.5 inline-block bg-black px-5 py-3 text-xs font-medium upprcase tracking-wide text-white",
+    "mt-1.5 inline-block bg-customPurple px-5 py-3 text-xs font-medium upprcase tracking-wide text-white",
 };
 
 function NavItems({ isModalView = false, isAdminView, router }) {

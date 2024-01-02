@@ -106,7 +106,7 @@ export default function CartModal() {
                       </h3>
                     </div>
                     <p className="mt-1 text-sm text-gray-600">
-                      $
+                    ₺
                       {cartItem &&
                         cartItem.productID &&
                         cartItem.productID.price}
@@ -129,7 +129,7 @@ export default function CartModal() {
                           }
                         />
                       ) : (
-                        "Remove"
+                        "Kaldır"
                       )}
                     </button>
                   </div>
@@ -147,9 +147,9 @@ export default function CartModal() {
               router.push("/cart");
               setShowCartModal(false);
             }}
-            className="mt-1.5 w-full inline-block bg-black text-white px-5 py-3 text-xs font-medium uppercase tracking-wide"
+            className="mt-1.5 w-full inline-block bg-customPurple text-white px-5 py-3 text-xs font-medium uppercase tracking-wide"
           >
-            Go To Cart
+            Sepete Git
           </button>
           <button
             disabled={cartItems && cartItems.length === 0}
@@ -158,13 +158,13 @@ export default function CartModal() {
               router.push("/checkout");
               setShowCartModal(false);
             }}
-            className="mt-1.5 w-full inline-block bg-black text-white px-5 py-3 text-xs font-medium uppercase tracking-wide disabled:opacity-50"
+            className="mt-1.5 w-full inline-block bg-customPurple text-white px-5 py-3 text-xs font-medium uppercase tracking-wide disabled:opacity-50"
           >
-            Checkout
+            Ödeme
           </button>
           <div className="mt-6 flex justify-center text-center text-sm text-gray-600">
             <button type="button" className="font-medium text-grey">
-              Continue Shopping
+              Alışverişe Devam et
               <span aria-hidden="true"> &rarr;</span>
             </button>
           </div>
