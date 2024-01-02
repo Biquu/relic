@@ -9,12 +9,58 @@ export const navOptions = [
     label: "Tüm Ürünler",
     path: "/product/listing/all-products",
   },
-  {
-    id: "listingKids",
-    label: "Kampanyalar",
-    path: "/product/listing/kids",
-  },
 ];
+
+export const primaryHeaderOptions = [
+  {
+    id: "elektroGitar",
+    label: "Elektro Gitarlar",
+    path: "/product/listing/electric-guitars",
+  },
+  {
+    id: "amplifiers",
+    label: "Amfiler",
+    path: "/product/listing/amplifiers",
+  },
+  {
+    id: "drumsAndPercussion",
+    label: "Davul ve Perküsyon",
+    path: "/product/listing/drums-and-percussion",
+  },
+  {
+    id: "bassGitar",
+    label: "Bass Gitarlar",
+    path: "/product/listing/bass-guitars",
+  },
+  {
+    id: "akustikGitar",
+    label: "Akustik Gitarlar",
+    path: "/product/listing/acoustic-guitars",
+  },
+  {
+    id: "DJStüdyo",
+    label: "DJ / Stüdyo",
+    path: "/product/listing/dj-studio",
+  },
+]
+export const secondaryHeaderOptions = [
+  {
+    id: "markalar",
+    label: "Markalar",
+    path: "/product/listing/brands",
+  },
+  {
+    id: "mağazalar",
+    label: "Mağazalar",
+    path: "/product/listing/shops",
+  },
+  {
+    id: "kampanyalar",
+    label: "Kampanyalar",
+    path: "/product/listing/discounts",
+  },
+]
+
 
 export const adminNavOptions = [
   {
@@ -138,7 +184,7 @@ export const adminAddProductformControls = [
   },
   {
     id: "year",
-    type: "number",
+    type: "text",
     placeholder: "Ürününüzün üretim yılını giriniz",
     label: "Yıl",
     componentType: "input",
@@ -280,6 +326,9 @@ export const getCategoryOptions = (selectedCategory) => {
     case "bassGitar":
       subCategoryOptions = [
         { id: "bassgitarlar", label: "Bass Gitarlar" },
+        { id: "5telliBassgitarlar", label: "5 Telli Bass Gitarlar" },
+        { id: "6telliBassgitarlar", label: "6 Telli Bass Gitarlar" },
+        { id: "akustikBassgitarlar", label: "Akustik Bass Gitarlar" },
         { id: "solakBassGitarlar", label: "Solak Bass Gitarlar" },
       ];
       break;
@@ -344,6 +393,7 @@ export const getCategoryOptions = (selectedCategory) => {
         { id: "hssmanyetikli", label: "HSS Manyetikli" },
         { id: "ssmanyetikli", label: "SS Manyetikli" },
         { id: "sssmanyetikli", label: "SSS Manyetikli" },
+        { id: "hhhmanyetikli", label: "HHH Manyetikli" },
         { id: "hsmanyetikli", label: "HS Manyetikli" },
       ];
       break;

@@ -10,7 +10,7 @@ const AdminAddNewProductSchema = Joi.object({
   brand: Joi.string().required(),
   model: Joi.string().required(),
   condition: Joi.string().required(),
-  year: Joi.number(),
+  year: Joi.string(),
   finish: Joi.string(),
   manufacturer: Joi.string(),
   category: Joi.string().required(),

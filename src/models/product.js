@@ -8,7 +8,7 @@ const ProductSchema = new mongoose.Schema(
     brand: String,
     model: String,
     condition: String,
-    year: Number,
+    year: String,
     finish: String,
     manufacturer: String,
     category: String,

@@ -1,6 +1,6 @@
 "use client";
 import { GlobalContext } from "@/context";
-import { adminNavOptions, navOptions } from "@/utils";
+import { adminNavOptions, navOptions , primaryHeaderOptions,secondaryHeaderOptions} from "@/utils";
 import { Fragment, useContext, useState, useEffect } from "react";
 import CommonModal from "../CommonModal";
 import Cookies from "js-cookie";
@@ -47,6 +47,43 @@ function NavItems({ isModalView = false, isAdminView, router }) {
     </div>
   );
 }
+function SubNavbar({ router }) {
+  return (
+    <div className="bg-white fixed w-full z-20 border-t border-b border-gray-200">
+      <div className="flex justify-between mx-auto text-black text-sm">
+        {/* Primary Header Options */}
+        <ul className="flex items-center justify-between mx-auto">
+          {primaryHeaderOptions.map((item) => (
+            <li
+              className="cursor-pointer text-customPurple px-8 last:border-r-0"
+              key={item.id}
+              onClick={() => router.push(item.path)}
+            >
+              {item.label}
+            </li>
+          ))}
+        </ul>
+
+        {/* Separator Line */}
+        <div className="border-r h-10 my-auto"></div>
+
+        {/* Secondary Header Options */}
+        <ul className="flex items-center justify-between mx-auto">
+          {secondaryHeaderOptions.map((item) => (
+            <li
+              className="cursor-pointer text-customPurple px-8"
+              key={item.id}
+              onClick={() => router.push(item.path)}
+            >
+              {item.label}
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  );
+}
+
 
 export default function Navbar() {
   const { showNavModal, setShowNavModal } = useContext(GlobalContext);
@@ -100,7 +137,7 @@ export default function Navbar() {
             <img
               src="/img/relic.svg" // Logo dosyanızın yolu
               alt="Logo"
-              className="self-center h-16"
+              className="self-center h-12"
             />
           </div>
 
@@ -205,6 +242,7 @@ export default function Navbar() {
           </div>
           <NavItems router={router} isAdminView={isAdminView} />
         </div>
+        <SubNavbar router={router}/>
       </nav>
       <CommonModal
         showModalTitle={false}

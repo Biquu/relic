@@ -59,13 +59,13 @@ async function helperForUPloadingImageToFirebase(file) {
 }
 
 const initialFormData = {
-  shopName: "",
+  shopName: "Biquu",
   name: "",
-  phone: "",
+  phone: "05071167922",
   brand: "",
   model: "",
   condition: "new",
-  year: 2007,
+  year: "",
   finish: "",
   manufacturer: "",
   category: "aksesuar",
@@ -81,19 +81,20 @@ const initialFormData = {
 export default function AdminAddNewProduct() {
   const [formData, setFormData] = useState(initialFormData);
 
-  const { componentLevelLoader, setComponentLevelLoader, currentUpdatedProduct,
-    setCurrentUpdatedProduct,} =
-    useContext(GlobalContext);
+  const {
+    componentLevelLoader,
+    setComponentLevelLoader,
+    currentUpdatedProduct,
+    setCurrentUpdatedProduct,
+  } = useContext(GlobalContext);
 
-    console.log(currentUpdatedProduct)
+  console.log(currentUpdatedProduct);
 
   const router = useRouter();
 
-    useEffect(()=> {
-      
-      if(currentUpdatedProduct !== null) setFormData(currentUpdatedProduct)
-    },[currentUpdatedProduct])
-
+  useEffect(() => {
+    if (currentUpdatedProduct !== null) setFormData(currentUpdatedProduct);
+  }, [currentUpdatedProduct]);
 
   async function handleImage(event) {
     console.log(event.target.files);
@@ -129,9 +130,9 @@ export default function AdminAddNewProduct() {
   async function handleAddProduct() {
     setComponentLevelLoader({ loading: true, id: "" });
     const res =
-    currentUpdatedProduct !== null
-      ? await updateAProduct(formData)
-      : await addNewProduct(formData);
+      currentUpdatedProduct !== null
+        ? await updateAProduct(formData)
+        : await addNewProduct(formData);
 
     console.log(res);
 
@@ -142,6 +143,7 @@ export default function AdminAddNewProduct() {
       });
 
       setFormData(initialFormData);
+      setCurrentUpdatedProduct(null);
       setTimeout(() => {
         router.push("/admin-view/all-products");
       }, 1000);
@@ -158,7 +160,7 @@ export default function AdminAddNewProduct() {
     setFormData({
       ...formData,
       category: selectedCategory,
-      subCategory: '', // Reset subcategory when category changes
+      subCategory: "", // Reset subcategory when category changes
     });
   };
 
@@ -199,7 +201,7 @@ export default function AdminAddNewProduct() {
                 label={controlItem.label}
                 options={
                   controlItem.id === "subCategory" && controlItem.dependsOn
-                    ? getCategoryOptions(formData.category) 
+                    ? getCategoryOptions(formData.category)
                     : controlItem.options
                 }
                 value={formData[controlItem.id]}
@@ -241,10 +243,16 @@ export default function AdminAddNewProduct() {
           >
             {componentLevelLoader && componentLevelLoader.loading ? (
               <ComponentLevelLoader
-                text={"Adding Product"}
+                text={
+                  currentUpdatedProduct !== null
+                    ? "Ürün Güncelleniyor"
+                    : "Ürün Ekleniyor"
+                }
                 color={"#ffffff"}
                 loading={componentLevelLoader && componentLevelLoader.loading}
               />
+            ) : currentUpdatedProduct !== null ? (
+              "Ürünü Güncelle"
             ) : (
               "Ürün Ekle"
             )}

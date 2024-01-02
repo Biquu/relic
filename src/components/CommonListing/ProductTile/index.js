@@ -3,7 +3,7 @@
 export default function ProductTile({ item }) {
   return (
     <div className="mx-auto">
-      <div className="overflow-hiden aspect-w-1 aspect-h-1 h-64 w-64">
+      <div className="overflow-hiden aspect-w-1 aspect-h-1 h-64 w-64 mx-auto">
         <img
           src={item.imageUrl}
           alt="Product image"
@@ -19,7 +19,7 @@ export default function ProductTile({ item }) {
       ) : null}
       <div className="my-4 mx-auto flex w-10/12 flex-col items-start justify-between">
         <div className="mb-2 flex">
-          <p className="mr-3 text-sm font-semibold">{`$ ${item.price}`}</p>
+          <p className="mr-3 text-sm font-semibold">{`₺ ${item.price}`}</p>
         </div>
         <h3 className="md-2 text-gray-400 text-sm">{item.name}</h3>
       </div>
