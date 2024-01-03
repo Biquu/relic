@@ -16,13 +16,7 @@ export const initialCheckoutFormData = {
   isProcessing: true,
 };
 
-const protectedRoutes = [
-  "cart",
-  "checkout",
-  "account",
-  "orders",
-  "admin-view",
-];
+const protectedRoutes = ["cart", "checkout", "account", "orders", "admin-view"];
 
 const protectedAdminRoutes = [
   "/admin-view",
@@ -57,6 +51,7 @@ export default function GlobalState({ children }) {
 
   const [allOrdersForUser, setAllOrdersForUser] = useState([]);
   const [orderDetails, setOrderDetails] = useState(null);
+  const [allOrdersForAllUsers, setAllOrdersForAllUsers] = useState([]);
 
   const router = useRouter();
   const pathName = usePathname();
@@ -127,6 +122,8 @@ export default function GlobalState({ children }) {
         setAllOrdersForUser,
         orderDetails,
         setOrderDetails,
+        allOrdersForAllUsers,
+        setAllOrdersForAllUsers,
       }}
     >
       {children}

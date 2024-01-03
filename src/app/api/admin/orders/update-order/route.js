@@ -5,26 +5,45 @@ import { NextResponse } from "next/server";
 
 export const dynamic = "force-dynamic";
 
-export async function GET(req) {
+export async function PUT(req) {
   try {
     await connectToDB();
     const isAuthUser = await AuthUser(req);
+    const data = await req.json();
 
     if (isAuthUser?.role === "seller") {
-      const getAllOrders = await Order.find({})
-        .populate("orderItems.product")
-        .populate("user");
+      const {
+        _id,
+        shippingAddress,
+        orderItems,
+        paymentMethod,
+        isPaid,
+        paidAt,
+        isProcessing,
+      } = data;
 
-      if (getAllOrders) {
+      const updateOrder = await Order.findOneAndUpdate(
+        { _id: _id },
+        {
+          shippingAddress,
+          orderItems,
+          paymentMethod,
+          isPaid,
+          paidAt,
+          isProcessing,
+        },
+        { new: true }
+      );
+
+      if (updateOrder) {
         return NextResponse.json({
           success: true,
-          data: getAllOrders,
+          message: "Order status updated successfully! ",
         });
       } else {
         return NextResponse.json({
-          success: false,
-          message:
-            "failed to fetch the orders ! Please try again after some time.",
+          success: true,
+          message: "failed to update the status of order",
         });
       }
     } else {
