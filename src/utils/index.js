@@ -42,7 +42,7 @@ export const primaryHeaderOptions = [
     label: "DJ / Stüdyo",
     path: "/product/listing/dj-studio",
   },
-]
+];
 export const secondaryHeaderOptions = [
   {
     id: "markalar",
@@ -59,8 +59,7 @@ export const secondaryHeaderOptions = [
     label: "Kampanyalar",
     path: "/product/listing/discounts",
   },
-]
-
+];
 
 export const adminNavOptions = [
   {
@@ -79,8 +78,8 @@ export const registrationFormControls = [
   {
     id: "name",
     type: "text",
-    placeholder: "Ürününüze başlık Giriniz",
-    label: "Başlık",
+    placeholder: "İsminizi giriniz",
+    label: "İsim",
     componentType: "input",
   },
   {
@@ -104,7 +103,6 @@ export const registrationFormControls = [
     label: "Role",
     componentType: "select",
     options: [
-      
       {
         id: "seller",
         label: "Satıcı",
@@ -134,7 +132,6 @@ export const loginFormControls = [
   },
 ];
 
-
 export const adminAddProductformControls = [
   {
     id: "shopName",
@@ -146,10 +143,11 @@ export const adminAddProductformControls = [
   {
     id: "name",
     type: "text",
-    placeholder: "İsminizi giriniz",
-    label: "İsim",
+    placeholder: "Ürününüze başlık Giriniz",
+    label: "Başlık",
     componentType: "input",
   },
+
   {
     id: "phone",
     type: "string",
@@ -233,7 +231,6 @@ export const adminAddProductformControls = [
     componentType: "select",
     dependsOn: "category",
     options: [],
-    
   },
   {
     id: "description",
@@ -301,7 +298,10 @@ export const getCategoryOptions = (selectedCategory) => {
         { id: "basguitaramfileri", label: "Bas Gitar Amfileri" },
         { id: "akustikenstrumanamfileri", label: "Akustik Enstrüman Amfileri" },
         { id: "klavyeamfileri", label: "Klavye Amfileri" },
-        { id: "elektronikdavulmonitorleri", label: "Elektronik Davul Monitörleri" },
+        {
+          id: "elektronikdavulmonitorleri",
+          label: "Elektronik Davul Monitörleri",
+        },
       ];
       break;
     case "bassGitar":
@@ -405,12 +405,18 @@ export const getCategoryOptions = (selectedCategory) => {
         { id: "bariton", label: "Bariton" },
         { id: "euphonium", label: "Euphonium" },
         { id: "melodikavemizika", label: "Melodika ve Mızıka" },
-        { id: "nefesliaksesuaryedekparca", label: "Nefesli Aksesuar Yedek Parça" },
+        {
+          id: "nefesliaksesuaryedekparca",
+          label: "Nefesli Aksesuar Yedek Parça",
+        },
       ];
       break;
     case "seslendirme":
       subCategoryOptions = [
-        { id: "evesessistemlerivesoundbar", label: "Eve Ses Sistemleri ve Soundbar" },
+        {
+          id: "evesessistemlerivesoundbar",
+          label: "Eve Ses Sistemleri ve Soundbar",
+        },
         { id: "monitörler", label: "Monitörler" },
         { id: "poweramfiler", label: "Power Amfiler" },
         { id: "seslendirmesetleri", label: "Seslendirme Setleri" },
@@ -439,7 +445,6 @@ export const getCategoryOptions = (selectedCategory) => {
   }
   return subCategoryOptions;
 };
-
 
 export const AvailableSizes = [
   {
@@ -473,35 +478,35 @@ export const addNewAddressFormControls = [
     id: "fullName",
     type: "input",
     placeholder: "Enter your full name",
-    label: "Full Name",
+    label: "Ad Soyad",
     componentType: "input",
   },
   {
     id: "address",
     type: "input",
     placeholder: "Enter your full address",
-    label: "Address",
+    label: "Adres",
     componentType: "input",
   },
   {
     id: "city",
     type: "input",
     placeholder: "Enter your city",
-    label: "City",
+    label: "Şehir",
     componentType: "input",
   },
   {
     id: "country",
     type: "input",
     placeholder: "Enter your country",
-    label: "Country",
+    label: "Ülke",
     componentType: "input",
   },
   {
     id: "postalCode",
     type: "input",
     placeholder: "Enter your postal code",
-    label: "Postal Code",
+    label: "Posta Kodu",
     componentType: "input",
   },
 ];

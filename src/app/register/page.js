@@ -62,6 +62,7 @@ export default function Register() {
 
     console.log(data);
   }
+
   useEffect(() => {
     if (isAuthUser) router.push("/");
   }, [isAuthUser]);

@@ -32,7 +32,7 @@ export async function POST(req) {
     const isAuthUser = await AuthUser(req);
 
 
-    if (isAuthUser?.role === "seller") {
+    if (isAuthUser) {
       const extractData = await req.json();
 
       const {

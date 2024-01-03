@@ -137,11 +137,11 @@ export default function Account() {
               <p>{user?.email}</p>
               <p>{user?.role}</p>
             </div>
-            <button onClick={()=>router.push('/orders')} className="mt-5  inline-block bg-black text-white px-5 py-3 text-xs font-medium uppercase tracking-wide">
-              View Your Orders
+            <button onClick={()=>router.push('/orders')} className="mt-5  inline-block bg-customPurple text-white px-5 py-3 text-xs font-medium uppercase tracking-wide">
+              Şiparişleri Görüntüle
             </button>
             <div className="mt-6">
-              <h1 className="font-bold text-lg">Your Addresses :</h1>
+              <h1 className="font-bold text-lg">Kayıtlı Adresleriniz :</h1>
               {pageLevelLoader ? (
                 <PulseLoader
                   color={"#000000"}
@@ -154,26 +154,26 @@ export default function Account() {
                   {addresses && addresses.length ? (
                     addresses.map((item) => (
                       <div className="border p-6" key={item._id}>
-                        <p>Name : {item.fullName}</p>
-                        <p>Address : {item.address}</p>
-                        <p>City : {item.city}</p>
-                        <p>Country : {item.country}</p>
-                        <p>PostalCode : {item.postalCode}</p>
+                        <p>İsim : {item.fullName}</p>
+                        <p>Adres : {item.address}</p>
+                        <p>Şehir: {item.city}</p>
+                        <p>Ülke : {item.country}</p>
+                        <p>Posta Kodu : {item.postalCode}</p>
                         <button
                           onClick={() => handleUpdateAddress(item)}
-                          className="mt-5 mr-5 inline-block bg-black text-white px-5 py-3 text-xs font-medium uppercase tracking-wide"
+                          className="mt-5 mr-5 inline-block bg-customPurple text-white px-5 py-3 text-xs font-medium uppercase tracking-wide"
                         >
-                          Update
+                          Güncelle
                         </button>
                         <button
                           onClick={() => handleDelete(item._id)}
-                          className="mt-5  inline-block bg-black text-white px-5 py-3 text-xs font-medium uppercase tracking-wide"
+                          className="mt-5  inline-block bg-customPurple text-white px-5 py-3 text-xs font-medium uppercase tracking-wide"
                         >
                           {componentLevelLoader &&
                           componentLevelLoader.loading &&
                           componentLevelLoader.id === item._id ? (
                             <ComponentLevelLoader
-                              text={"Deleting"}
+                              text={"Siliniyor"}
                               color={"#ffffff"}
                               loading={
                                 componentLevelLoader &&
@@ -181,13 +181,13 @@ export default function Account() {
                               }
                             />
                           ) : (
-                            "Delete"
+                            "Sil"
                           )}
                         </button>
                       </div>
                     ))
                   ) : (
-                    <p>No address found ! Please add a new address below</p>
+                    <p>Adres Bulunamadı ! Lütfen yeni bir adres ekleyiniz</p>
                   )}
                 </div>
               )}
@@ -195,9 +195,9 @@ export default function Account() {
             <div className="mt-4">
               <button
                 onClick={() => setShowAddressForm(!showAddressForm)}
-                className="mt-5  inline-block bg-black text-white px-5 py-3 text-xs font-medium uppercase tracking-wide"
+                className="mt-5  inline-block bg-customPurple text-white px-5 py-3 text-xs font-medium uppercase tracking-wide"
               >
-                {showAddressForm ? "Hide Address Form" : "Add New Address"}
+                {showAddressForm ? "Adres Listesini Gizle" : "Yeni Adres Ekle"}
               </button>
             </div>
             {showAddressForm ? (
@@ -220,18 +220,18 @@ export default function Account() {
                 </div>
                 <button
                   onClick={handleAddOrUpdateAddress}
-                  className="mt-5  inline-block bg-black text-white px-5 py-3 text-xs font-medium uppercase tracking-wide"
+                  className="mt-5  inline-block bg-customPurple text-white px-5 py-3 text-xs font-medium uppercase tracking-wide"
                 >
                   {componentLevelLoader && componentLevelLoader.loading ? (
                     <ComponentLevelLoader
-                      text={"Saving"}
+                      text={"Kaydediliyor"}
                       color={"#ffffff"}
                       loading={
                         componentLevelLoader && componentLevelLoader.loading
                       }
                     />
                   ) : (
-                    "Save"
+                    "Kaydet"
                   )}
                 </button>
               </div>

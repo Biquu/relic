@@ -156,7 +156,7 @@ export default function Navbar() {
               onClick={handleSearch}
               className="bg-customPurple px-4 py-2 text-white rounded-md text-xs font-medium"
             >
-              Search
+              Ara
             </button>
           </div>
 
