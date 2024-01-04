@@ -106,6 +106,10 @@ export const addNewProduct = async (formData) => {
       console.log(e);
     }
   };
+
+ 
+  
+  
   
 
 

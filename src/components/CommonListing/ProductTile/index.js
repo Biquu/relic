@@ -20,7 +20,7 @@ export default function ProductTile({ item }) {
       {item.priceDrop > 0 ? (
         <div className="absolute top-0 m-2 rounded-full bg-customPurple">
           <p className="rounded-full  p-1 text-[8px] font-bold uppercase tracking-wide text-white sm:py-1 sm:px-3">
-            Sale
+            İndirimde
           </p>
         </div>
       ) : null}
