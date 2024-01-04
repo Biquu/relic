@@ -11,11 +11,13 @@ import './Home.css'
 function Home() {
   return (
     <div className='Home'>
+       <div className='ChatbotContainer'>
       <Chatbot
         config={config}
         messageParser={MessageParser} // Correct the prop name
         actionProvider={ActionProvider} // Correct the prop name
       />
+      </div>
     </div>
   );
 }
