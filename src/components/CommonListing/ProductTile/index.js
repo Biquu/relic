@@ -1,15 +1,37 @@
 "use client";
 
+import { GlobalContext } from "@/context";
 import { useRouter } from "next/navigation";
+import { useContext } from "react";
+import { visitedProduct, AllVisitedProduct } from "@/services/product";
+import { findHighlyVisitedProducts, recommendSimilarProducts, visitedProductsData } from "@/services/recommendation";
 
 export default function ProductTile({ item }) {
   const router = useRouter();
+  const { user } = useContext(GlobalContext);
+  
+
+  async function handleVisitedProduct(data) {
+    const VisitedProductFormData = {
+      user: user._id,
+      product: data._id,
+    };
+
+    const res = await visitedProduct(VisitedProductFormData);
+    const result = await AllVisitedProduct({ user });
+    console.log(res);
+    console.log(result)
+  }
+  const handleClick = () => {
+    router.push(`/product/${item._id}`);
+    handleVisitedProduct(item);
+    
+    findHighlyVisitedProducts(user._id, 2);
+    
+  };
 
   return (
-    <div
-      className="mx-auto"
-      onClick={() => router.push(`/product/${item._id}`)}
-    >
+    <div className="mx-auto" onClick={handleClick}>
       <div className="overflow-hiden aspect-w-1 aspect-h-1 h-64 w-64 mx-auto">
         <img
           src={item.imageUrl}
