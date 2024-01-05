@@ -1,25 +1,17 @@
-'use client'
-import { Chatbot } from 'react-chatbot-kit'; // Make sure to use the correct import
+"use client";
 
-import config from './ChatBot/config';
-import MessageParser from './ChatBot/MessageParser';
-import ActionProvider from './ChatBot/ActionProvider';
 
-import 'react-chatbot-kit/build/main.css';
-import './Home.css'
-// Define the Home component
-function Home() {
+import ChatbotComponent from "@/components/ChatBot";
+
+
+
+export default function Home() {
+
+
+
   return (
-    <div className='Home'>
-       <div className='ChatbotContainer'>
-      <Chatbot
-        config={config}
-        messageParser={MessageParser} // Correct the prop name
-        actionProvider={ActionProvider} // Correct the prop name
-      />
-      </div>
+    <div className="flex min-h-screen flex-col items-center justify-between bg-gray-200">
+      
     </div>
   );
 }
-
-export default Home;

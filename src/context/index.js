@@ -53,6 +53,8 @@ export default function GlobalState({ children }) {
   const [orderDetails, setOrderDetails] = useState(null);
   const [allOrdersForAllUsers, setAllOrdersForAllUsers] = useState([]);
 
+  const [isChatbotOpen, setChatbotOpen] = useState(false);
+
   const router = useRouter();
   const pathName = usePathname();
 
@@ -124,6 +126,8 @@ export default function GlobalState({ children }) {
         setOrderDetails,
         allOrdersForAllUsers,
         setAllOrdersForAllUsers,
+        isChatbotOpen,
+        setChatbotOpen,
       }}
     >
       {children}

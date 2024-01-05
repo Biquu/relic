@@ -2,6 +2,7 @@ import { Inter } from 'next/font/google'
 import './globals.css'
 import GlobalState from '@/context'
 import Navbar from '@/components/Navbar'
+import ChatBot from '@/components/ChatBot'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -16,6 +17,7 @@ export default function RootLayout({ children }) {
       <body className={inter.className}>
         <GlobalState>
           <Navbar/>
+          <ChatBot/>
           <main className='flex min-h-screen flex-col mt-[105px] bg-gray-100'>{children}</main>
         </GlobalState>
       </body>
