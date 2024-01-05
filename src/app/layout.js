@@ -4,6 +4,7 @@ import GlobalState from '@/context'
 import Navbar from '@/components/Navbar'
 import ChatBot from '@/components/ChatBot'
 
+
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata = {

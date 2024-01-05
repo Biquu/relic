@@ -1,5 +1,5 @@
 // components/Chatbot/Chatbot.js
-"use client"
+"use client";
 
 import "react-chatbot-kit/build/main.css";
 import config from "./config";
@@ -52,7 +52,7 @@ export default function ChatBot() {
       )}
 
       {isChatbotOpen && (
-        <div id="chatbot-container" className="fixed bottom-0 right-0 p-4">
+        <div id="chatbot-container" className="fixed z-20 bottom-0 right-0 p-4">
           <Chatbot
             config={config}
             messageParser={MessageParser}

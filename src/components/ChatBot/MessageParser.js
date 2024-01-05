@@ -1,12 +1,12 @@
 class MessageParser {
-    constructor(actionProvider, state) {
-      this.actionProvider = actionProvider;
-      this.state = state;
-    }
-  
-    parse(message) {
-      console.log(message)
-    }
+  constructor(actionProvider, state) {
+    this.actionProvider = actionProvider;
+    this.state = state;
   }
-  
-  export default MessageParser;
+
+  parse(message) {
+    console.log(message);
+  }
+}
+
+export default MessageParser;
