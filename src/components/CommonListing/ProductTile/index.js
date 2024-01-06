@@ -3,12 +3,13 @@
 import { GlobalContext } from "@/context";
 import { useRouter } from "next/navigation";
 import { useContext } from "react";
-import { visitedProduct, AllVisitedProduct } from "@/services/product";
+import { visitedProduct, AllVisitedProduct, AllVisitedProductbyUserID } from "@/services/product";
 import { productById } from "@/services/product";
 
 export default function ProductTile({ item }) {
   const router = useRouter();
   const { user } = useContext(GlobalContext);
+  
 
   async function handleVisitedProduct(data) {
     const VisitedProductFormData = {
@@ -17,57 +18,67 @@ export default function ProductTile({ item }) {
     };
 
     const res = await visitedProduct(VisitedProductFormData);
-    const result = await AllVisitedProduct({ user });
-    console.log(res, "zooortt");
-    console.log(result, "zattir");
+    console.log(res, "visitedProduct")
+
+    const result = await AllVisitedProductbyUserID(user._id)
+    console.log(result, "AllVisitedProductbyUserID")
+
+    const ress = await AllVisitedProduct();
+    console.log(ress, "AllVisitedProduct")
+
+    
   }
 
-  async function findHighlyVisitedProducts(userId) {
-    const productCount = {};
+  // async function findHighlyVisitedProducts(data) {
+  //   const productCount = {};
 
-    const visitedProductsData = await AllVisitedProduct(userId);
-    // Her ürünün kaç kere ziyaret edildiğini sayan bir obje oluştur
-    visitedProductsData.data.forEach((visitedProduct) => {
-      const productId = visitedProduct.product;
+  //   const visitedProductsData = await AllVisitedProductbyUserID(data);
+  //   // Her ürünün kaç kere ziyaret edildiğini sayan bir obje oluştur
+  //   visitedProductsData.data.forEach((visitedProduct) => {
+  //     const productId = visitedProduct.product;
 
-      if (productId) {
-        if (productCount[productId]) {
-          productCount[productId]++;
-        } else {
-          productCount[productId] = 1;
-        }
-      }
-    });
-    const highlyVisitedProducts = [];
+  //     if (productId) {
+  //       if (productCount[productId]) {
+  //         productCount[productId]++;
+  //       } else {
+  //         productCount[productId] = 1;
+  //       }
+  //     }
+  //   });
+  //   const highlyVisitedProducts = [];
 
-    // Belirli bir eşik değerinden (threshold) daha fazla ziyaret edilen ürünleri bul
-    Object.keys(productCount).forEach((productId) => {
-      const visitCount = productCount[productId];
+  //   // Belirli bir eşik değerinden (threshold) daha fazla ziyaret edilen ürünleri bul
+  //   Object.keys(productCount).forEach((productId) => {
+  //     const visitCount = productCount[productId];
 
-      if (visitCount > 2) {
-        highlyVisitedProducts.push({
-          productId: productId,
-          visitCount: visitCount,
-        });
-      }
-    });
+  //     if (visitCount > 2) {
+  //       highlyVisitedProducts.push({
+  //         productId: productId,
+  //         visitCount: visitCount,
+  //       });
+  //     }
+  //   });
 
-    // Ziyaret sayısına göre azalan sırayla sırala
-    highlyVisitedProducts.sort((a, b) => b.visitCount - a.visitCount);
+  //   // Ziyaret sayısına göre azalan sırayla sırala
+  //   highlyVisitedProducts.sort((a, b) => b.visitCount - a.visitCount);
 
-    console.log(highlyVisitedProducts);
+  //   console.log(highlyVisitedProducts, "aa");
+   
 
-    for (const product of highlyVisitedProducts) {
-      const productDetails = await productById(product.productId);
-      console.log("Product Details:", productDetails);
-    }
-  }
+  //   for (const product of highlyVisitedProducts) {
+  //     const productDetails = await productById(product.productId);
+
+  //     console.log("Kullanıcının en çok baktığı ürünler: ", productDetails, user._id);
+  //   }
+    
+  // }
 
   const handleClick = () => {
     router.push(`/product/${item._id}`);
     handleVisitedProduct(item);
-    findHighlyVisitedProducts(user._id);
   };
+
+  
 
   return (
     <div className="mx-auto" onClick={handleClick}>
