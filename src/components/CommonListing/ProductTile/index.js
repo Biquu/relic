@@ -4,12 +4,11 @@ import { GlobalContext } from "@/context";
 import { useRouter } from "next/navigation";
 import { useContext } from "react";
 import { visitedProduct, AllVisitedProduct } from "@/services/product";
-import { findHighlyVisitedProducts, recommendSimilarProducts, visitedProductsData } from "@/services/recommendation";
+import { productById } from "@/services/product";
 
 export default function ProductTile({ item }) {
   const router = useRouter();
   const { user } = useContext(GlobalContext);
-  
 
   async function handleVisitedProduct(data) {
     const VisitedProductFormData = {
@@ -19,15 +18,55 @@ export default function ProductTile({ item }) {
 
     const res = await visitedProduct(VisitedProductFormData);
     const result = await AllVisitedProduct({ user });
-    console.log(res);
-    console.log(result)
+    console.log(res, "zooortt");
+    console.log(result, "zattir");
   }
+
+  async function findHighlyVisitedProducts(userId) {
+    const productCount = {};
+
+    const visitedProductsData = await AllVisitedProduct(userId);
+    // Her ürünün kaç kere ziyaret edildiğini sayan bir obje oluştur
+    visitedProductsData.data.forEach((visitedProduct) => {
+      const productId = visitedProduct.product;
+
+      if (productId) {
+        if (productCount[productId]) {
+          productCount[productId]++;
+        } else {
+          productCount[productId] = 1;
+        }
+      }
+    });
+    const highlyVisitedProducts = [];
+
+    // Belirli bir eşik değerinden (threshold) daha fazla ziyaret edilen ürünleri bul
+    Object.keys(productCount).forEach((productId) => {
+      const visitCount = productCount[productId];
+
+      if (visitCount > 2) {
+        highlyVisitedProducts.push({
+          productId: productId,
+          visitCount: visitCount,
+        });
+      }
+    });
+
+    // Ziyaret sayısına göre azalan sırayla sırala
+    highlyVisitedProducts.sort((a, b) => b.visitCount - a.visitCount);
+
+    console.log(highlyVisitedProducts);
+
+    for (const product of highlyVisitedProducts) {
+      const productDetails = await productById(product.productId);
+      console.log("Product Details:", productDetails);
+    }
+  }
+
   const handleClick = () => {
     router.push(`/product/${item._id}`);
     handleVisitedProduct(item);
-    
-    findHighlyVisitedProducts(user._id, 2);
-    
+    findHighlyVisitedProducts(user._id);
   };
 
   return (

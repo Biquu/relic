@@ -3,6 +3,7 @@ import VisitedProduct from "@/models/visitedProduct";
 import { NextResponse } from "next/server";
 import AuthUser from "@/middleware/AuthUser";
 
+
 export const dynamic = "force-dynamic";
 
 export async function POST(req) {
@@ -25,6 +26,11 @@ export async function POST(req) {
           message: "Görüntülnen ürün kaydedilemedi",
         });
       }
+    }else{
+      return NextResponse.json({
+        success: false,
+        message: "kullanıcı algılanamadı"
+      })
     }
   } catch (error) {
     console.log(error);

@@ -221,6 +221,7 @@ export const adminAddProductformControls = [
       { id: "nefesliler", label: "Nefesliler" },
       { id: "seslendirme", label: "Seslendirme" },
       { id: "klavyeler", label: "Klavyeler" },
+      { id: "piyanolar", label: "Piyanolar" },
     ],
   },
   {
@@ -272,6 +273,7 @@ export const getCategoryOptions = (selectedCategory) => {
         { id: "slideYuzugu", label: "Slide Yüzüğü" },
         { id: "temizlikVeBakimUrunleri", label: "Temizlik ve Bakım Ürünleri" },
         { id: "notaSehpasi", label: "Nota Sehpası" },
+        { id: "baget", label: "Bagetler" },
       ];
       break;
     case "akustikGitar":
@@ -440,26 +442,19 @@ export const getCategoryOptions = (selectedCategory) => {
         { id: "klavyeaksesuarli", label: "Klavye Aksesuarlı" },
       ];
       break;
+    case "piyanolar":
+      subCategoryOptions = [
+        { id: "akustikduvarpiyanoları", label: "Akustik Duvar Piyanoları" },
+        { id: "akustikkuyruklupiyanolar", label: "Akustik Kuyruklu Piyanolar" },
+        { id: "dijitalkonsolpiyanolar", label: "Dijital Konsol Piyanolar" },
+        { id: "dijitalkuyruklupiyanolar", label: "Dijital Kuyruklu Piyanolar" },
+      ];
+      break;
     default:
       subCategoryOptions = [];
   }
   return subCategoryOptions;
 };
-
-export const AvailableSizes = [
-  {
-    id: "s",
-    label: "S",
-  },
-  {
-    id: "m",
-    label: "M",
-  },
-  {
-    id: "l",
-    label: "L",
-  },
-];
 
 export const firebaseConfig = {
   apiKey: "AIzaSyBt1wU48_clruSRBR9Jj-WL86AL1fcbJ-E",

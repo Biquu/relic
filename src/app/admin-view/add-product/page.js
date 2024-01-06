@@ -145,7 +145,8 @@ export default function AdminAddNewProduct() {
       setCurrentUpdatedProduct(null)
       setTimeout(() => {
         router.push("/admin-view/all-products");
-      }, 1000);
+        router.refresh();
+      }, 2000);
     } else {
       toast.error(res.message, {
         position: toast.POSITION.TOP_RIGHT,
