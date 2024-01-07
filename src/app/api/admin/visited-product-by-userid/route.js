@@ -3,12 +3,15 @@ import VisitedProduct from "@/models/visitedProduct";
 import Product from "@/models/product";
 import { NextResponse } from "next/server";
 import mongoose from "mongoose";
+import AuthUser from "@/middleware/AuthUser";
 
 export const dynamic = "force-dynamic";
 
 export async function GET(req) {
   try {
     await connectToDB();
+    const isAuthUser = await AuthUser(req);
+
     const { searchParams } = new URL(req.url);
     const userId = searchParams.get("id");
 
@@ -39,13 +42,11 @@ export async function GET(req) {
           },
         },
       ]);
-        const uID = new mongoose.Types.ObjectId(userId)
+      const uID = new mongoose.Types.ObjectId(userId);
 
       // Kullanıcının ziyaret sayılarını alın
       const userProductVisitCounts = await VisitedProduct.aggregate([
-        { $match: 
-          { user: uID,
-            product: { $in: productIds } } },
+        { $match: { user: uID, product: { $in: productIds } } },
         {
           $group: {
             _id: "$product",
@@ -53,9 +54,22 @@ export async function GET(req) {
           },
         },
       ]);
+      console.log(productIds[0] , "zaer");
 
       // Product koleksiyonundan ilgili productId'ler için verileri çekin
-      const productsData = await Product.find({ _id: { $in: productIds } });
+      const productsData = await Product.find(
+        { _id: { $in: productIds } }, // Filtreleme koşulu
+        {
+          // Projeksiyon objesi (sadece belirtilen alanları seç)
+          brand: 1,
+          category: 1,
+          price: 1,
+          subCategory: 1,
+          totalVisitCount: 1,
+          userVisitCount: 1,
+          _id: 1,
+        }
+      );
 
       // Ziyaret sayılarını eşleştirin ve verilere ekleyin
       const result = productsData.map((product) => {
