@@ -54,7 +54,7 @@ export async function GET(req) {
           },
         },
       ]);
-      console.log(productIds[0] , "zaer");
+     
 
       // Product koleksiyonundan ilgili productId'ler için verileri çekin
       const productsData = await Product.find(
@@ -65,8 +65,6 @@ export async function GET(req) {
           category: 1,
           price: 1,
           subCategory: 1,
-          totalVisitCount: 1,
-          userVisitCount: 1,
           _id: 1,
         }
       );

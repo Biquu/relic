@@ -23,6 +23,7 @@ export async function GET(req) {
         },
       ]);
       
+      
 
       const data = await Product.find(
         { _id: { $in: productIds } }, // Filtreleme koşulu

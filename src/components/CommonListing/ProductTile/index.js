@@ -3,14 +3,13 @@
 import { GlobalContext } from "@/context";
 import { useRouter } from "next/navigation";
 import { useContext } from "react";
-import { visitedProduct} from "@/services/product";
-import getRecommendations from "@/services/recommendation";
-
+import { AllVisitedProduct, AllVisitedProductbyUserID, visitedProduct } from "@/services/product";
+import runRecom from "@/services/recommendation";
+import recommendation from "@/services/recommendation";
 
 export default function ProductTile({ item }) {
   const router = useRouter();
   const { user } = useContext(GlobalContext);
-  
 
   async function handleVisitedProduct(data) {
     const VisitedProductFormData = {
@@ -19,18 +18,17 @@ export default function ProductTile({ item }) {
     };
 
     const res = await visitedProduct(VisitedProductFormData);
-    console.log(res, "visitedProduct")
+    console.log(res, "visitedProduct");
 
+    
   }
-
 
   const handleClick = () => {
     router.push(`/product/${item._id}`);
     handleVisitedProduct(item);
-    getRecommendations(user._id);
+    recommendation(user._id);
+ 
   };
-
-  
 
   return (
     <div className="mx-auto" onClick={handleClick}>
