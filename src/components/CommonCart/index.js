@@ -2,16 +2,18 @@
 
 import { useRouter } from "next/navigation";
 import ComponentLevelLoader from "../Loader/componentlevel";
+import ScrollableRecommendations from "../CommonRecommend";
 
 export default function CommonCart({
   cartItems = [],
   handleDeleteCartItem,
   componentLevelLoader,
+  recommendedProducts,
 }) {
   const router = useRouter();
 
   return (
-    <section className="h-screen bg-gray-100">
+    <section className=" bg-gray-100">
       <div className="mx-auto px-4 sm:px-6 lg:px-8">
         <div className="mx-auto mt-8 max-w-screen-xl px-4 sm:px-6 lg:px-8">
           <div className="bg-white shadow">
@@ -32,7 +34,7 @@ export default function CommonCart({
                               cartItem.productID.imageUrl
                             }
                             alt="Product image"
-                            className="h-24 w-25 max-w-full rounded-lg object-cover"
+                            className="h-32 w-32 max-w-full object-cover"
                           />
                         </div>
                         <div className="flex flex-1 flex-col justify-between">
@@ -123,6 +125,14 @@ export default function CommonCart({
                 </div>
               </div>
             </div>
+          </div>
+          <div>
+            <h2 className="text-2xl font-bold my-6">
+              Size Özel Önerilen Ürünler
+            </h2>
+            <ScrollableRecommendations
+              recommendedProducts={recommendedProducts}
+            />
           </div>
         </div>
       </div>

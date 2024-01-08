@@ -92,22 +92,5 @@ export default function ProductButton({ item }) {
         )}
       </button>
     </>
-  ) : (
-    <button
-      onClick={() => handleAddToCart(item)}
-      className="mt-1.5 flex w-full justify-center bg-customPurple px-5 py-3 text-xs font-medium uppercase tracking-wide text-white"
-    >
-      {componentLevelLoader &&
-      componentLevelLoader.loading &&
-      componentLevelLoader.id === item._id ? (
-        <ComponentLevelLoader
-          text={"Adding to cart"}
-          color={"#ffffff"}
-          loading={componentLevelLoader && componentLevelLoader.loading}
-        />
-      ) : (
-        "Sepete Ekle"
-      )}
-    </button>
-  );
+  ) : null
 }

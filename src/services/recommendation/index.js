@@ -1,50 +1,6 @@
 import { AllVisitedProductbyUserID, _AllVisitedProducts } from "../product";
 import * as tf from "@tensorflow/tfjs";
 
-
-
-// Fonksiyon: Kullanıcıların ziyaret ettiği ürünlerden öneri skorları hesapla
-function calculateRecommendationScores(visitedProductsData) {
-  const userProductCombos = {};
-  const recommendationScores = {};
-
-  // Veri setini oluştur
-  visitedProductsData.forEach((visitedProduct) => {
-    const userId = visitedProduct.user;
-    const productId = visitedProduct.product;
-
-    if (!userProductCombos[userId]) {
-      userProductCombos[userId] = {};
-    }
-
-    if (!userProductCombos[userId][productId]) {
-      userProductCombos[userId][productId] = 0;
-    }
-
-    userProductCombos[userId][productId]++;
-  });
-
-  // Öneri skorlarını hesapla
-  Object.keys(userProductCombos).forEach((userId) => {
-    const userVisitData = userProductCombos[userId];
-
-    Object.keys(userVisitData).forEach((productId) => {
-      const visitCount = userVisitData[productId];
-
-      // Örnek bir öneri skoru hesaplama formülü
-      const recommendationScore = visitCount * 0.1; // Örnek formülü, kendi iş mantığınıza göre ayarlayabilirsiniz
-
-      if (!recommendationScores[userId]) {
-        recommendationScores[userId] = {};
-      }
-
-      recommendationScores[userId][productId] = recommendationScore;
-    });
-  });
-
-  return recommendationScores;
-}
-
 // Fonksiyon: TensorFlow.js modelini eğit
 async function trainModel(userData) {
   const products = userData.map((entry) => entry._id);
@@ -99,7 +55,10 @@ async function trainModel(userData) {
     for (let i = 0; i < ratings.length; i += batchSize) {
       const remainingData = Math.min(batchSize, ratings.length - i);
       const batchInput = input.slice([i, 0], [remainingData, input.shape[1]]);
-      const batchOutput = output.slice([i, 0], [remainingData, output.shape[1]]);
+      const batchOutput = output.slice(
+        [i, 0],
+        [remainingData, output.shape[1]]
+      );
       console.log("Batch Input Shape:", batchInput.shape);
       console.log("Batch Output Shape:", batchOutput.shape);
       console.log(batchInput.print());
@@ -121,7 +80,7 @@ async function trainModel(userData) {
 // Fonksiyon: Öneri skorlarını kullanarak ürünleri öner
 async function recommendProducts(model, numProducts, originalIndices) {
   const allZeros = Array.from({ length: numProducts * 2 }, () => 0);
-  console.log(allZeros," bilal")
+  console.log(allZeros, " bilal");
 
   // Giriş tensorünü 2D olarak oluştur
   const inputTensor = tf.tensor2d(allZeros, [numProducts, 2]);
@@ -146,31 +105,69 @@ async function recommendProducts(model, numProducts, originalIndices) {
 }
 
 // Fonksiyon: Kullanıcı için önerileri çalıştır
-async function runRecommendationForUser(userID) {
-  try {
-    // Kullanıcının ziyaret ettiği ürünleri al
-    const user = await AllVisitedProductbyUserID(userID);
-    const userData = user.data;
+// async function runRecommendationForUser(userID) {
+//   try {
+//     // Kullanıcının ziyaret ettiği ürünleri al
+//     const user = await AllVisitedProductbyUserID(userID);
+//     const userData = user.data;
 
-    // Modeli eğit
-    const trainedModel = await trainModel(userData);
+//     // Modeli eğit
+//     // const trainedModel = await trainModel(userData);
 
-    // Belirli bir kullanıcı için öneri skorlarını hesapla
-    const visitedProductsData = (await _AllVisitedProducts()).data;
-    const recommendationScores = calculateRecommendationScores(visitedProductsData);
+//     const scores = recommendationScore(userData);
 
-    // Öneri skorlarını kullanarak en yüksek puan alan 6 ürünü al
-    const topRecommendations = Object.keys(recommendationScores[userID])
-      .sort((a, b) => recommendationScores[userID][b] - recommendationScores[userID][a])
-      .slice(0, 6);
+//     const sortedScores = Object.keys(scores)
+//       .sort((a, b) => scores[b] - scores[a])
+//       .slice(0, 6);
 
-    console.log("Top Recommendations:", topRecommendations);
-    console.log(userData);
-  } catch (error) {
-    console.error("Error:", error);
-  }
-}
+//     return sortedScores;
 
-export default function recommendation(userID) {   ////buuuuuuuu
-  runRecommendationForUser(userID);
-}
+//     //console.log(sortedScores, scores, userData)
+
+//     // Öneri skorlarını kullanarak en yüksek puan alan 6 ürünü al
+//     // const topRecommendationss = Object.keys(recommendationScores[userID])
+//     //   .sort(
+//     //     (a, b) =>
+//     //       recommendationScores[userID][b] - recommendationScores[userID][a]
+//     //   )
+//     //   .slice(0, 6);
+//   } catch (error) {
+//     console.error("Error:", error);
+//   }
+// }
+
+// export default  function recommendation(userID) {
+
+//   async function recommendationScore() {
+    
+//     const user = await AllVisitedProductbyUserID(userID);
+//     const userData = user.data;
+
+//     const recommendationScores = {};
+
+//     userData.forEach((visitedProduct) => {
+//       const userVisitCount = visitedProduct.userVisitCount;
+//       const totalVisitCount = visitedProduct.totalVisitCount;
+
+//       const score =
+//         userVisitCount * 0.5 +
+//         (userVisitCount / totalVisitCount) * 0.35 +
+//         totalVisitCount * 0.15;
+
+//       recommendationScores[visitedProduct._id] = score;
+//     });
+
+//     return recommendationScores;
+//   }
+
+//   const scores = recommendationScore(userID);
+//   console.log(scores)
+
+//   const sortedScores = Object.keys(scores)
+//     .sort((a, b) => scores[b] - scores[a])
+//     .slice(0, 6);
+
+//   console.log(sortedScores);
+
+//   return sortedScores;
+// }

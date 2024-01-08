@@ -6,6 +6,8 @@ import { deleteFromCart, getAllCartItems } from "@/services/cart";
 import { useContext, useEffect } from "react";
 import { PulseLoader } from "react-spinners";
 import { toast } from "react-toastify";
+import { AllVisitedProductbyUserID } from "@/services/product";
+import { productById } from "@/services/product";
 
 export default function Cart() {
   const {
@@ -16,6 +18,8 @@ export default function Cart() {
     setPageLevelLoader,
     setComponentLevelLoader,
     componentLevelLoader,
+    recommendedProducts,
+    setRecommendedProducts,
   } = useContext(GlobalContext);
 
   async function extractAllCartItems() {
@@ -34,7 +38,8 @@ export default function Cart() {
                     ? parseInt(
                         (
                           item.productID.price -
-                          item.productID.price * (item.productID.priceDrop / 100)
+                          item.productID.price *
+                            (item.productID.priceDrop / 100)
                         ).toFixed(2)
                       )
                     : item.productID.price,
@@ -49,9 +54,51 @@ export default function Cart() {
     console.log(res);
   }
 
+  async function RecommendedProducts() {
+    
+    const data = await AllVisitedProductbyUserID(user._id);
+
+    const userData = data.data;
+  
+    const recommendationScores = {};
+
+    userData.forEach((visitedProduct) => {
+      const userVisitCount = visitedProduct.userVisitCount;
+      const totalVisitCount = visitedProduct.totalVisitCount;
+
+      const score =
+        userVisitCount * 0.5 +
+        (userVisitCount / totalVisitCount) * 0.35 +
+        totalVisitCount * 0.15;
+
+      recommendationScores[visitedProduct._id] = score;
+    });
+
+    const sortedScores = Object.keys(recommendationScores)
+      .sort((a, b) => recommendationScores[b] - recommendationScores[a])
+      .slice(0, 8);
+
+    const products = [];
+
+    for (const productId of sortedScores) {
+      const product = await productById(productId);
+
+      if (product) {
+        products.push(product.data);
+      }
+    }
+  
+    setRecommendedProducts(products);
+  }
+
   useEffect(() => {
-    if (user !== null) extractAllCartItems();
+    if (user !== null) {
+      extractAllCartItems();
+      RecommendedProducts();
+    }
   }, [user]);
+
+  
 
   async function handleDeleteCartItem(getCartItemID) {
     setComponentLevelLoader({ loading: true, id: getCartItemID });
@@ -85,11 +132,15 @@ export default function Cart() {
     );
   }
 
+  console.log(recommendedProducts);
+  console.log(cartItems)
+
   return (
     <CommonCart
       componentLevelLoader={componentLevelLoader}
       handleDeleteCartItem={handleDeleteCartItem}
       cartItems={cartItems}
+      recommendedProducts={recommendedProducts}
     />
   );
 }

@@ -3,7 +3,7 @@ import React from "react";
 
 export default function Avatar() {
     return (
-        <div className="bg-AA076B w-50 h-50 grid place-items-center text-black rounded-full">RE</div>
+        <div className=" w-10 h-10 grid place-items-center border bg-customPurple2 text-black rounded-full">RE</div>
     )
 
 }

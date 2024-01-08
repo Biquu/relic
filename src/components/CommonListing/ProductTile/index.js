@@ -3,9 +3,7 @@
 import { GlobalContext } from "@/context";
 import { useRouter } from "next/navigation";
 import { useContext } from "react";
-import { AllVisitedProduct, AllVisitedProductbyUserID, visitedProduct } from "@/services/product";
-import runRecom from "@/services/recommendation";
-import recommendation from "@/services/recommendation";
+import { visitedProduct } from "@/services/product";
 
 export default function ProductTile({ item }) {
   const router = useRouter();
@@ -19,20 +17,16 @@ export default function ProductTile({ item }) {
 
     const res = await visitedProduct(VisitedProductFormData);
     console.log(res, "visitedProduct");
-
-    
   }
 
   const handleClick = () => {
     router.push(`/product/${item._id}`);
     handleVisitedProduct(item);
-    recommendation(user._id);
- 
   };
 
   return (
-    <div className="mx-auto" onClick={handleClick}>
-      <div className="overflow-hiden aspect-w-1 aspect-h-1 h-64 w-64 mx-auto">
+    <div className="mx-auto align-top" onClick={handleClick}>
+      <div className="overflow-hiden aspect-w-1 aspect-h-1 mx-auto">
         <img
           src={item.imageUrl}
           alt="Product image"
@@ -63,7 +57,7 @@ export default function ProductTile({ item }) {
             <p className="mr-3 text-sm font-semibold">{`(${item.priceDrop}%)off`}</p>
           ) : null}
         </div>
-        <h3 className="md-2 text-gray-400 text-sm">{item.name}</h3>
+        <h3 className="overflow-hiden mr-2 text-gray-600 text-sm max-h-10">{item.name}</h3>
       </div>
     </div>
   );
