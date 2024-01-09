@@ -75,7 +75,7 @@ export default function Home() {
               <ul className="grid grid-cols-2 gap-4">
                 {products && products.length
                   ? products
-                    .filter((item) => item.onSale === "yes")
+                    .filter((item) => item.priceDrop > 0)
                     .splice(0, 2)
                     .map((productItem) => (
                       <li

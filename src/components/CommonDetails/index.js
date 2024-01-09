@@ -44,7 +44,7 @@ export default function CommonDetails({ item }) {
                 <div className="max-w-xl overflow-hidden">
                   <img
                     src={item.imageUrl}
-                    className="h-full w-full max-w-full object-cover border"
+                    className="h-full w-full max-w-full object-cover "
                     alt="Product Details"
                   />
                 </div>
@@ -87,10 +87,10 @@ export default function CommonDetails({ item }) {
                   }`}
                 >
                   {" "}
-                  ₺{item && item.price}
+                  TL{item && item.price}
                 </h1>
                 {item.priceDrop > 0 ? (
-                  <h1 className="mr-3 text-sm font-semibold text-red-700">{`₺ ${(
+                  <h1 className="mr-3 text-sm font-semibold text-red-700">{`TL ${(
                     item.price -
                     item.price * (item.priceDrop / 100)
                   ).toFixed(2)}`}</h1>

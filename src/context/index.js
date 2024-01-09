@@ -57,6 +57,8 @@ export default function GlobalState({ children }) {
 
   const [recommendedProducts, setRecommendedProducts] = useState([]);
 
+  const [showFiterModal, setFiltertModal] = useState(false);
+
   const router = useRouter();
   const pathName = usePathname();
 
@@ -132,6 +134,8 @@ export default function GlobalState({ children }) {
         setChatbotOpen,
         recommendedProducts,
         setRecommendedProducts,
+        showFiterModal,
+        setFiltertModal,
       }}
     >
       {children}

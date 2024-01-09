@@ -79,7 +79,7 @@ export default function Orders() {
                               Toplam ödenen tutar
                             </p>
                             <p className="mr-3 text-2xl  font-semibold text-gray-900">
-                              ₺{item.totalPrice}
+                              TL{item.totalPrice}
                             </p>
                           </div>
                         </div>

@@ -32,11 +32,12 @@ export default function CartModal() {
               productID: {
                 ...item.productID,
                 price:
-                  item.productID.onSale === "yes"
+                  item.productID.priceDrop > 0
                     ? parseInt(
                         (
                           item.productID.price -
-                          item.productID.price * (item.productID.priceDrop / 100)
+                          item.productID.price *
+                            (item.productID.priceDrop / 100)
                         ).toFixed(2)
                       )
                     : item.productID.price,
@@ -106,7 +107,7 @@ export default function CartModal() {
                       </h3>
                     </div>
                     <p className="mt-1 text-sm text-gray-600">
-                    ₺
+                      TL
                       {cartItem &&
                         cartItem.productID &&
                         cartItem.productID.price}

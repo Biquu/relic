@@ -34,7 +34,7 @@ export default function Cart() {
               productID: {
                 ...item.productID,
                 price:
-                  item.productID.onSale === "yes"
+                  item.productID.priceDrop > 0
                     ? parseInt(
                         (
                           item.productID.price -

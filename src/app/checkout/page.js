@@ -223,7 +223,7 @@ export default function Checkout() {
                       {item && item.productID && item.productID.name}
                     </span>
                     <span className="font-semibold">
-                      ₺{item && item.productID && item.productID.price}
+                      TL{item && item.productID && item.productID.price}
                     </span>
                   </div>
                 </div>
@@ -274,7 +274,7 @@ export default function Checkout() {
             <div className="flex items-center justify-between">
               <p className="text-sm font-medium text-gray-900">Ara Toplam</p>
               <p className="text-lg font-bold text-gray-900">
-                ₺
+                TL
                 {cartItems && cartItems.length
                   ? cartItems.reduce(
                       (total, item) => item.productID.price + total,
@@ -290,7 +290,7 @@ export default function Checkout() {
             <div className="flex items-center justify-between">
               <p className="text-sm font-medium text-gray-900">Toplam</p>
               <p className="text-lg font-bold text-gray-900">
-                ₺
+                TL
                 {cartItems && cartItems.length
                   ? cartItems.reduce(
                       (total, item) => item.productID.price + total,

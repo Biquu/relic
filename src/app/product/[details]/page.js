@@ -3,9 +3,11 @@ import { productById } from "@/services/product";
 
 export default async function ProductDetails({ params }) {
   const productDetailsData = await productById(params.details);
-
-
   
+
+
+  console.log(params, "param")
+  console.log(params.details, "detai")
 
 
 

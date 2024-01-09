@@ -35,3 +35,29 @@ body::-webkit-scrollbar-thumb {
   background-color: darkgrey;
   outline: 1px solid slategrey;
 }
+
+/* CustomScrollbar.css or in your component's CSS-in-JS styles */
+/* Scroll bar özelleştirmeleri */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 10px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background-color: #4C3575; /* Scrollbar renk */
+  border-radius: 5px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background-color: #f1f1f1; /* Scrollbar yolunun arka plan rengi */
+  border-radius: 5px;
+}
+
+/* Aktif hale geldiğinde */
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background-color: #6e5494; /* Hover rengi */
+}
+
+/* Scrollbar'a tıklandığında */
+.custom-scrollbar::-webkit-scrollbar-thumb:active {
+  background-color: #52406f; /* Aktif renk */
+}

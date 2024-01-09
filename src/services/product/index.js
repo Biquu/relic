@@ -131,10 +131,13 @@ export const visitedProduct = async (formData) => {
 
 export const AllVisitedProductbyUserID = async (id) => {
   try {
-    const res = await fetch(`http://localhost:3000/api/admin/visited-product-by-userid?id=${id}`, {
-      method: "GET",
-      cache: "no-store",
-    });
+    const res = await fetch(
+      `http://localhost:3000/api/admin/visited-product-by-userid?id=${id}`,
+      {
+        method: "GET",
+        cache: "no-store",
+      }
+    );
 
     const data = await res.json();
 
@@ -145,10 +148,13 @@ export const AllVisitedProductbyUserID = async (id) => {
 };
 export const AllVisitedProduct = async () => {
   try {
-    const res = await fetch("http://localhost:3000/api/admin/all-visited-product", {
-      method: "GET",
-      cache: "no-store",
-    });
+    const res = await fetch(
+      "http://localhost:3000/api/admin/all-visited-product",
+      {
+        method: "GET",
+        cache: "no-store",
+      }
+    );
 
     const data = await res.json();
 
@@ -160,10 +166,13 @@ export const AllVisitedProduct = async () => {
 
 export const _AllVisitedProducts = async () => {
   try {
-    const res = await fetch("http://localhost:3000/api/admin/visited-products", {
-      method: "GET",
-      cache: "no-store",
-    });
+    const res = await fetch(
+      "http://localhost:3000/api/admin/visited-products",
+      {
+        method: "GET",
+        cache: "no-store",
+      }
+    );
 
     const data = await res.json();
 
@@ -173,3 +182,20 @@ export const _AllVisitedProducts = async () => {
   }
 };
 
+export const searchProducts = async (query) => {
+  try {
+    const res = await fetch(
+      `http://localhost:3000/api/admin/results?query=${query}`,
+      {
+        method: "GET",
+        cache: "no-store",
+      }
+    );
+
+    const data = await res.json();
+
+    return data;
+  } catch (error) {
+    console.log(error);
+  }
+};

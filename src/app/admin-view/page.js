@@ -108,7 +108,7 @@ export default function AdminView() {
                               Toplam Ödenen Tutar :
                             </p>
                             <p className="text-sm  font-semibold text-gray-900">
-                            ₺{item?.totalPrice}
+                            TL{item?.totalPrice}
                             </p>
                           </div>
                         </div>

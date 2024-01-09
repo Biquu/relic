@@ -27,7 +27,7 @@ const ScrollableRecommendations = ({ recommendedProducts }) => {
     slidesToShow: 4,
     slidesToScroll: 1,
     autoplay: true,
-    autoplaySpeed: 5000,
+    autoplaySpeed: 2500,
     responsive: [
       {
         breakpoint: 1024,
@@ -51,7 +51,7 @@ const ScrollableRecommendations = ({ recommendedProducts }) => {
   };
 
   return (
-    <div className="bg-white shadow-md p-6 sm:p-8 mt-4 sm:pt-8">
+    <div className="bg-white shadow-md p-6 sm:p-8 mt-4 sm:pt-8 mb-8">
       <Slider {...sliderSettings}>
         {recommendedProducts.map((recommendedProduct, index) => (
           <div key={index} className="w-32 mx-auto relative flex flex-col overflow-hidden border cursor-pointer">

@@ -1,11 +1,17 @@
 "use client";
 import { GlobalContext } from "@/context";
-import { adminNavOptions, navOptions , primaryHeaderOptions,secondaryHeaderOptions} from "@/utils";
+import {
+  adminNavOptions,
+  navOptions,
+  primaryHeaderOptions,
+  secondaryHeaderOptions,
+} from "@/utils";
 import { Fragment, useContext, useState, useEffect } from "react";
 import CommonModal from "../CommonModal";
 import Cookies from "js-cookie";
 import { usePathname, useRouter } from "next/navigation";
 import CartModal from "../CartModal";
+import { searchProducts } from "@/services/product";
 
 const styles = {
   button:
@@ -85,7 +91,6 @@ function SubNavbar({ router }) {
   );
 }
 
-
 export default function Navbar() {
   const { showNavModal, setShowNavModal } = useContext(GlobalContext);
   const {
@@ -104,7 +109,7 @@ export default function Navbar() {
   const pathName = usePathname();
   const router = useRouter();
 
-  console.log(currentUpdatedProduct, 'navbar');
+  console.log(currentUpdatedProduct, "navbar");
 
   useEffect(() => {
     if (
@@ -114,10 +119,7 @@ export default function Navbar() {
       setCurrentUpdatedProduct(null);
   }, [pathName]);
 
-  function handleSearch() {
-    //zort
-    console.log("Searching for:", searchQuery);
-  }
+  
 
   function handleLogout() {
     setIsAuthUser(false);
@@ -126,6 +128,11 @@ export default function Navbar() {
     localStorage.clear();
     router.push("/");
   }
+
+  function handleSearch() {
+    router.push(`/results?query=${searchQuery}`)
+  }
+
 
   const isAdminView = pathName.includes("admin-view");
 
@@ -150,7 +157,7 @@ export default function Navbar() {
               placeholder="Yeni ve kullanılmış müzik aletleri için alışveriş yapın..."
               className="border border-customPurple rounded-md p-2 mr-2 text-xs font-medium flex-grow"
               value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
+              onChange={(event) => setSearchQuery(event.target.value)}
             />
             <button
               onClick={handleSearch}
@@ -167,7 +174,7 @@ export default function Navbar() {
                   className={
                     "mt-1.5 inline-block bg-customPurple px-5 py-3 text-xs font-medium upprcase tracking-wide text-white rounded-md"
                   }
-                  onClick={()=>router.push("/account")}
+                  onClick={() => router.push("/account")}
                 >
                   Hesap
                 </button>
@@ -247,7 +254,7 @@ export default function Navbar() {
           </div>
           <NavItems router={router} isAdminView={isAdminView} />
         </div>
-        <SubNavbar router={router}/>
+        <SubNavbar router={router} />
       </nav>
       <CommonModal
         showModalTitle={false}
