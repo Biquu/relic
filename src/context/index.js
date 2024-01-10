@@ -57,6 +57,8 @@ export default function GlobalState({ children }) {
 
   const [recommendedProducts, setRecommendedProducts] = useState([]);
 
+  const [sellerProducts, setSellerProducts] = useState([]);
+
   const [showFiterModal, setFiltertModal] = useState(false);
 
   const router = useRouter();
@@ -135,6 +137,8 @@ export default function GlobalState({ children }) {
         setRecommendedProducts,
         showFiterModal,
         setFiltertModal,
+        sellerProducts,
+        setSellerProducts,
       }}
     >
       {children}

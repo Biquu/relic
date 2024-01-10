@@ -285,7 +285,7 @@ export default function Checkout() {
             </div>
             <div className="flex items-center justify-between">
               <p className="text-sm font-medium text-gray-900">Kargo</p>
-              <p className="text-lg font-bold text-gray-900">Free</p>
+              <p className="text-lg font-bold text-gray-900">Ücretsiz</p>
             </div>
             <div className="flex items-center justify-between">
               <p className="text-sm font-medium text-gray-900">Toplam</p>

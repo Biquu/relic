@@ -116,7 +116,7 @@ export default function OrderDetails() {
                 </div>
                 <div className="flex justify-between w-full">
                   <p className="text-base leading-5 text-gray-800">Shipping</p>
-                  <p className="text-base leading-5 text-gray-900">Free</p>
+                  <p className="text-base leading-5 text-gray-900">Ücretsiz</p>
                 </div>
                 <div className="flex justify-between w-full">
                   <p className="text-base leading-5 text-gray-800">Toplam</p>

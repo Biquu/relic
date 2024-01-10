@@ -20,6 +20,7 @@ const AdminAddNewProductSchema = Joi.object({
   price: Joi.number().required(),
   priceDrop: Joi.number().required(),
   imageUrl: Joi.string().required(),
+  sellerID: Joi.string().required(),
 });
 
 export const dynamic = "force-dynamic";
@@ -51,6 +52,7 @@ export async function POST(req) {
         price,
         priceDrop,
         imageUrl,
+        sellerID,
       } = extractData;
 
       const { error } = AdminAddNewProductSchema.validate({
@@ -69,6 +71,7 @@ export async function POST(req) {
         price,
         priceDrop,
         imageUrl,
+        sellerID,
       });
 
       if (error) {

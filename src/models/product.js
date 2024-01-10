@@ -13,11 +13,11 @@ const ProductSchema = new mongoose.Schema(
     manufacturer: String,
     category: String,
     subCategory: String,
-
     description: String,
     price: Number,
     priceDrop: Number,
     imageUrl: String,
+    sellerID: String,
   },
   { timestamps: true }
 );

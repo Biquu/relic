@@ -72,9 +72,9 @@ const initialFormData = {
   subCategory: "kablo",
   description: "",
   price: 0,
- 
   priceDrop: 0,
   imageUrl: "",
+  sellerID: "",
 };
 
 export default function AdminAddNewProduct() {
@@ -85,15 +85,31 @@ export default function AdminAddNewProduct() {
     setComponentLevelLoader,
     currentUpdatedProduct,
     setCurrentUpdatedProduct,
+    user,
   } = useContext(GlobalContext);
 
-  console.log(currentUpdatedProduct);
+  const userID = user._id;
+
+  console.log(currentUpdatedProduct, "1");
 
   const router = useRouter();
 
   useEffect(() => {
+    if (userID !== null)
+      setFormData({
+        ...formData,
+        sellerID: userID,
+      });
+  }, [userID]);
+
+  useEffect(() => {
     if (currentUpdatedProduct !== null) setFormData(currentUpdatedProduct);
   }, [currentUpdatedProduct]);
+
+  console.log(formData, "ada");
+  console.log(currentUpdatedProduct, "2");
+
+  
 
   async function handleImage(event) {
     console.log(event.target.files);
@@ -126,6 +142,7 @@ export default function AdminAddNewProduct() {
   //   });
   // }
 
+  console.log(currentUpdatedProduct, "3");
   async function handleAddProduct() {
     setComponentLevelLoader({ loading: true, id: "" });
     const res =
@@ -142,11 +159,10 @@ export default function AdminAddNewProduct() {
       });
 
       setFormData(initialFormData);
-      setCurrentUpdatedProduct(null)
+      setCurrentUpdatedProduct(null);
       setTimeout(() => {
         router.push("/admin-view/all-products");
-        router.refresh();
-      }, 2000);
+      }, 1000);
     } else {
       toast.error(res.message, {
         position: toast.POSITION.TOP_RIGHT,
@@ -156,7 +172,7 @@ export default function AdminAddNewProduct() {
     }
   }
 
-  console.log(formData);
+  console.log(currentUpdatedProduct, "4");
 
   const handleCategoryChange = (selectedCategory) => {
     setFormData({

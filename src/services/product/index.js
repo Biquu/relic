@@ -107,6 +107,24 @@ export const productById = async (id) => {
   }
 };
 
+export const AllProductsbySellerID = async (id) => {
+  try {
+    const res = await fetch(
+      `http://localhost:3000/api/admin/product-by-sellerid?id=${id}`,
+      {
+        method: "GET",
+        cache: "no-store",
+      }
+    );
+
+    const data = await res.json();
+
+    return data;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 export const visitedProduct = async (formData) => {
   try {
     const response = await fetch(
