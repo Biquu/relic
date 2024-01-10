@@ -15,7 +15,7 @@ export const addToCart = async (formData) => {
 
     return data;
   } catch (error) {
-    console.log(error,"zort");
+    console.log(error);
   }
 };
 

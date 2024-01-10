@@ -13,7 +13,7 @@ export default function CommonListing({ data }) {
 
   useEffect(() => {
     router.refresh();
-  }, [router]);
+  }, []);
 
   const handleFilterChange = ({
     minPrice,

@@ -96,7 +96,6 @@ export default function GlobalState({ children }) {
       protectedAdminRoutes.indexOf(pathName) > -1
     )
       router.push("/unauthorized-page");
-    console.log("bura çalıştı");
   }, [user, pathName]);
 
   return (

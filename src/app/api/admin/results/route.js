@@ -29,7 +29,6 @@ export async function GET(req) {
         return acc;
       }, []),
     });
-    console.log(searchProducts,"aa")
 
     if (searchProducts && searchProducts.length > 0) {
       return NextResponse.json({

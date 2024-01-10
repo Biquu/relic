@@ -29,11 +29,11 @@ export default function ProductTile({ item }) {
 
   return (
     <div className="mx-auto align-top overflow-hidden group hover:scale-110 transition-transform" onClick={handleClick}>
-      <div className="overflow-hidden aspect-w-1 aspect-h-1 h-72">
+      <div className="overflow-hidden aspect-w-1 aspect-h-1 h-72 ">
         <img
           src={item.imageUrl}
           alt="Product image"
-          className="h-full w-full object-cover"
+          className="h-full w-full object-cover "
         />
       </div>
       <div className="my-4 mx-auto flex w-10/12 flex-col items-start justify-between">
