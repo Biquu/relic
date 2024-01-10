@@ -8,9 +8,7 @@ class MessageParser {
     const lowercase = message.toLowerCase()
    
 
-    if(lowercase.includes("zort")) {
-      this.actionProvider.helloWorldHandler()
-    }
+   
   }
 }
 
