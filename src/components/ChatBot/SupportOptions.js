@@ -32,7 +32,7 @@ const SupportOptions = (props) => {
           };
 
           const buttonsMarkup = options.map((option) => (
-            <button key={option.id} onClick={() => handleOptionClick(option)} className="option-button bg-customPurple text-white py-1 px-2 rounded-full border-none cursor-pointer">
+            <button key={option.id} onClick={() => handleOptionClick(option)} className="option-button bg-[#7e22ce] text-white py-1 px-2 rounded-full border-none cursor-pointer mb-1">
               {option.text}
             </button>
           ));

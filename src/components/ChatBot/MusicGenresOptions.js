@@ -55,7 +55,7 @@ const MusicGenresOptions = (props) => {
       };
     
       const buttonsMarkup = options.map((option) => (
-        <button key={option.id} onClick={() => handleOptionClick(option)} className="option-button bg-61045F text-black py-2 px-3 rounded-full border-none cursor-pointer">
+        <button key={option.id} onClick={() => handleOptionClick(option)} className="option-button bg-[#7e22ce] border text-white py-2 px-3 rounded-full border-none cursor-pointer mb-1 ml-1">
           {option.text}
         </button>
       ));

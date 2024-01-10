@@ -5,13 +5,6 @@ class ActionProvider {
     
   }
 
-  //  helloWorldHandler = () =>{
-  //   const message = this.createChatBotMessage("Merhaba nasıl yardımcı olabilirim?", {
-  //     widget: "adviceBtn"});
-    
-  //   this.setChatbotMessage(message)
-  // }
-
   setChatbotMessage = (message) => {
     this.setState(state => ({...state, messages: [...state.messages, message]}))
   } 
@@ -29,7 +22,7 @@ class ActionProvider {
     this.setChatbotMessage(musicGenresMessage);
   }
   handleMusicGenreOption = (genre) => {
-    const message = this.createChatBotMessage(`Tercih ettiğiniz müzik türü: ${genre}`);
+    const message = this.createChatBotMessage(`Tercih ettiğiniz müzik türü: ${genre}`)
     this.setChatbotMessage(message);
   }
   

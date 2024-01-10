@@ -23,6 +23,13 @@ const config = {
   customComponents: {
     botAvatar: (props) => <Avatar {...props} />,
   },
+  customStyles: {
+    botMessageBox: {
+      backgroundColor: '#663399',
+  
+    },
+
+  },
   state: {},
   widgets: [
     {
@@ -42,6 +49,8 @@ const config = {
       widgetFunc: (props) => <SupportOptions createChatBotMessage={createChatBotMessage} actionProvider={actionProvider} {...props} />,
     },
   ],
+
+  
 };
 
 export default config;

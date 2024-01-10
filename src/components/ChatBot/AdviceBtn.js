@@ -13,15 +13,15 @@ export default function AdviceBtn({ handleButtonClick, actionProvider }) {
   };
 
   return (
-    <div>
+    <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
       <button
-        className="bg-customPurple text-white py-2 px-3 rounded-full border-none cursor-pointer"
+        className="bg-[#7e22ce] text-white py-2 px-3 rounded-full border-none cursor-pointer"
         onClick={() => handleButtonClickWithCondition("customerSupport")}
       >
         Müşteri Destek Servisi
       </button>
       <button
-        className="bg-customPurple text-white py-2 px-3 rounded-full border-none cursor-pointer"
+        className="bg-[#7e22ce] text-white py-2 px-4 rounded-full border-none cursor-pointer"
         onClick={() => handleButtonClickWithCondition("customerSuggestions")}
       >
         Müşteri Öneri Sistemi
