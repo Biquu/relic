@@ -23,7 +23,7 @@ export default function AdminView() {
 
     console.log(res);
 
-    if (res.success) {
+    if (res.success && user !== null) {
       setPageLevelLoader(false);
       setAllOrdersForAllUsers(
         res.data && res.data.length
@@ -69,6 +69,41 @@ export default function AdminView() {
     );
   }
 
+  const filterOrdersBySellerID = (orders) => {
+    if (!user) {
+      // Kullanıcı ID'si null ise, boş bir dizi dönebilirsiniz veya başka bir işlem yapabilirsiniz.
+      return [];
+    }
+
+    return orders.reduce((filteredOrders, order) => {
+      const filteredOrderItems = order.orderItems.filter(
+        (orderItem) =>
+          orderItem.product && orderItem.product.sellerID === user._id
+      );
+
+      if (filteredOrderItems.length > 0) {
+        filteredOrders.push({
+          ...order,
+          orderItems: filteredOrderItems,
+        });
+      }
+
+      return filteredOrders;
+    }, []);
+  };
+
+  const calculateTotalPriceForOrder = (order) => {
+    return order.orderItems.reduce((total, orderItem) => {
+      // Fiyatlar product'un price özelliğine göre hesaplanacak
+      if (orderItem.product && orderItem.product.sellerID === user._id) {
+        total += orderItem.product.price * ( 1 - (orderItem.product.priceDrop / 100)) * orderItem.qty; // 'qty' özelliği kullanılacak
+      }
+      return total;
+    }, 0);
+  };
+
+  console.log(filterOrdersBySellerID(allOrdersForAllUsers), "adam");
+
   return (
     <section>
       <div className="mx-auto px-4 sm:px-6 lg:px-8">
@@ -77,7 +112,7 @@ export default function AdminView() {
             <div className="flow-root">
               {allOrdersForAllUsers && allOrdersForAllUsers.length ? (
                 <ul className="flex flex-col gap-4">
-                  {allOrdersForAllUsers.map((item) => (
+                  {filterOrdersBySellerID(allOrdersForAllUsers).map((item) => (
                     <li
                       key={item._id}
                       className="bg-gray-200 shadow p-5 flex flex-col space-y-3 py-6 text-left"
@@ -108,7 +143,16 @@ export default function AdminView() {
                               Toplam Ödenen Tutar :
                             </p>
                             <p className="text-sm  font-semibold text-gray-900">
-                            TL{item?.totalPrice}
+                              {calculateTotalPriceForOrder(item)}TL
+                            </p>
+                          </div>
+                          <div className="flex justify-center md:justify-start items-center md:items-start flex-col space-y-4 xl:mt-8">
+                            <p className="mr-3 text-sm font-medium text-gray-900">
+                              Müşterinin Teslimat Adresi :{" "}
+                              {item?.shippingAddress?.address}{" "}
+                              {item?.shippingAddress?.city}{" "}
+                              {item?.shippingAddress?.country}{" "}
+                              {item?.shippingAddress?.postalCode}
                             </p>
                           </div>
                         </div>

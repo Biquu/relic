@@ -2,7 +2,7 @@
 
 import { useRouter } from "next/navigation";
 import ComponentLevelLoader from "../Loader/componentlevel";
-import ScrollableRecommendations from "../CommonRecommend";
+import ScrollableRecommendations from "../ScrollableRecommendations";
 
 export default function CommonCart({
   cartItems = [],

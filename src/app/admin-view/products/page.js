@@ -15,7 +15,7 @@ export default function AdminAllProducts() {
 
     async function handleGetSellerProducts(){
         const get = await AllProductsbySellerID(user._id)
-        setSellerProducts(get)
+        setSellerProducts(get.data)
     }
     
 
@@ -29,7 +29,7 @@ export default function AdminAllProducts() {
     
     
     
-    return <CommonListingSeller data={sellerProducts.data}/>
+    return <CommonListingSeller data={sellerProducts}/>
     
     
 

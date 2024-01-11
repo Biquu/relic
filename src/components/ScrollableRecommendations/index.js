@@ -6,21 +6,7 @@ import ProductTile from "../CommonListing/ProductTile";
 import ProductButton from "../CommonListing/ProductButtons";
 
 const ScrollableRecommendations = ({ recommendedProducts }) => {
-  const [scrollPosition, setScrollPosition] = useState(0);
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      if (scrollPosition < recommendedProducts.length - 4) {
-        setScrollPosition((prev) => prev + 1);
-      } else {
-        setScrollPosition(0);
-      }
-    }, 5000);
-
-    return () => clearInterval(interval);
-  }, [scrollPosition, recommendedProducts.length]);
-
-  const sliderSettings = {
+  const [sliderSettings, setSliderSettings] = useState({
     dots: false,
     infinite: true,
     speed: 500,
@@ -48,7 +34,16 @@ const ScrollableRecommendations = ({ recommendedProducts }) => {
         },
       },
     ],
-  };
+  });
+
+  useEffect(() => {
+    if (recommendedProducts.length < 4) {
+      setSliderSettings((prevSettings) => ({
+        ...prevSettings,
+        slidesToShow: recommendedProducts.length,
+      }));
+    }
+  }, [recommendedProducts]);
 
   return (
     <div className="bg-white shadow-md p-6 sm:p-8 mt-4 sm:pt-8 mb-8">

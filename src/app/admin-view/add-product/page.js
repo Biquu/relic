@@ -88,14 +88,14 @@ export default function AdminAddNewProduct() {
     user,
   } = useContext(GlobalContext);
 
-  const userID = user._id;
+  const userID = user?._id;
 
   console.log(currentUpdatedProduct, "1");
 
   const router = useRouter();
 
   useEffect(() => {
-    if (userID !== null)
+    if (userID !== null && !formData.sellerID)
       setFormData({
         ...formData,
         sellerID: userID,
@@ -106,8 +106,7 @@ export default function AdminAddNewProduct() {
     if (currentUpdatedProduct !== null) setFormData(currentUpdatedProduct);
   }, [currentUpdatedProduct]);
 
-  console.log(formData, "ada");
-  console.log(currentUpdatedProduct, "2");
+
 
   
 
