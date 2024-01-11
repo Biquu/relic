@@ -22,24 +22,24 @@ export async function POST(req) {
 
         return NextResponse.json({
           success: true,
-          message: "Products are on the way !",
+          message: "Ürünler yolda !",
         });
       } else {
         return NextResponse.json({
           success: false,
-          message: "Failed to create a order ! Please try again",
+          message: "Sipariş oluşturulamadı! Lütfen tekrar deneyin",
         });
       }
     } else {
       return NextResponse.json({
         success: false,
-        message: "You are not authticated",
+        message: "Doğrulama sağlanamadı",
       });
     }
   } catch (e) {
     return NextResponse.json({
       success: false,
-      message: "Something went wrong ! Please try again later",
+      message: "Bir hata oluştu ! Lütfen daha sonra tekrar deneyiniz",
     });
   }
 }

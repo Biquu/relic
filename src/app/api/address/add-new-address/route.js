@@ -47,25 +47,25 @@ export async function POST(req) {
       if (newlyAddedAddress) {
         return NextResponse.json({
           success: true,
-          message: "Address added successfully",
+          message: "Adrs Başarıyla Eklenedi",
         });
       } else {
         return NextResponse.json({
           success: false,
-          message: "failed to add an address ! Please try again later",
+          message: "Adres ekelemede bir hata oluştu ! Lütfen Tekrar Deneyiniz",
         });
       }
     } else {
       return NextResponse.json({
         success: false,
-        message: "You are not authenticated",
+        message: "Doğrulama Yapılamadı",
       });
     }
   } catch (e) {
     console.log(e);
     return NextResponse.json({
       success: false,
-      message: "Something went wrong ! Please try again later",
+      message: "Bir şey Yanlış Gitti Lütfen Tekrar Deneyiniz",
     });
   }
 }

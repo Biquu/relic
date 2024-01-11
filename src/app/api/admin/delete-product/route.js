@@ -17,7 +17,7 @@ export async function DELETE(req) {
       if (!id)
         return NextResponse.json({
           success: false,
-          message: "Product ID is required",
+          message: "Ürün ID si gerekli",
         });
 
       const deletedProduct = await Product.findByIdAndDelete(id);
@@ -25,25 +25,25 @@ export async function DELETE(req) {
       if (deletedProduct) {
         return NextResponse.json({
           success: true,
-          message: "Product deleted successfully",
+          message: "Ürün başarıyla silindi",
         });
       } else {
         return NextResponse.json({
           success: false,
-          message: "Failed to delete the product ! Please try again",
+          message: "Ürün silmede bir hata oluştur ! Lütfen tekrar deneyiniz",
         });
       }
     } else {
       return NextResponse.json({
         success: false,
-        message: "You are not authenticated",
+        message: "Doğrulama sağlanamadı",
       });
     }
   } catch (e) {
     console.log(error);
     return NextResponse.json({
       success: false,
-      message: "Something went wrong ! Please try again later",
+      message: "Bir şey yanlış gitti lütfent tekrar deneyiniz",
     });
   }
 }

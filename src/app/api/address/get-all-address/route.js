@@ -15,7 +15,7 @@ export async function GET(req) {
     if (!id) {
       return NextResponse.json({
         success: false,
-        message: "You are not logged In",
+        message: "Giriş Yapmadınız",
       });
     }
 
@@ -32,20 +32,20 @@ export async function GET(req) {
       } else {
         return NextResponse.json({
           success: false,
-          message: "failed to get addresses ! Please try again",
+          message: "Adresi alınamadı ! Lütfen tekrar deneyiniz",
         });
       }
     } else {
       return NextResponse.json({
         success: false,
-        message: "You are not authenticated",
+        message: "Doğrulama sağlanamadı",
       });
     }
   } catch (e) {
     console.log(e);
     return NextResponse.json({
       success: false,
-      message: "Something went wrong ! Please try again later",
+      message: "Bir şey yanlış gitti ! Lütfen tekrar deneyiniz",
     });
   }
 }

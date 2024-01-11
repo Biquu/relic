@@ -60,25 +60,25 @@ export async function PUT(req) {
       if (updatedProduct) {
         return NextResponse.json({
           success: true,
-          message: "Product updated successfully",
+          message: "Ürün başarıyla güncellendi",
         });
       } else {
         return NextResponse.json({
           success: false,
-          message: "Failed to update the product ! Please try again later",
+          message: "Ürün güncellemede bir hata oluştur ! Lütfen tekrar deneyiniz",
         });
       }
     } else {
       return NextResponse.json({
         success: false,
-        message: "You are not authenticated",
+        message: "Doğrulama sağlanamadı",
       });
     }
   } catch (e) {
     console.log(error);
     return NextResponse.json({
       success: false,
-      message: "Something went wrong ! Please try again later",
+      message: "Bir şey yanlış gitti ! Lütfen tekrar deneyiniz",
     });
   }
 }

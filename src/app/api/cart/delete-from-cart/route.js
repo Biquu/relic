@@ -15,7 +15,7 @@ export async function DELETE(req) {
       if (!id)
         return NextResponse.json({
           success: false,
-          message: "Cart Item ID is required",
+          message: "Sepet Öğesi Kimliği gerekli",
         });
 
       const deleteCartItem = await Cart.findByIdAndDelete(id);
@@ -23,24 +23,24 @@ export async function DELETE(req) {
       if (deleteCartItem) {
         return NextResponse.json({
           success: true,
-          message: "Cart Item deleted successfully",
+          message: "Sepet Öğesi başarıyla silindi",
         });
       } else {
         return NextResponse.json({
           success: false,
-          message: "Failed to delete Cart item ! Please try again.",
+          message: "Sepet öğesi silinemedi! Lütfen tekrar deneyin.",
         });
       }
     } else {
       return NextResponse.json({
         success: false,
-        message: "You are not authenticated",
+        message: "Doğrulama sağlanamadı",
       });
     }
   } catch (error) {
     return NextResponse.json({
       success: false,
-      message: "Something went wrong ! Please try again",
+      message: "Bir şey yanlış gitti ! Lütfen tekrar deneyiniz",
     });
   }
 }

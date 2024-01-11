@@ -18,7 +18,7 @@ export async function GET(req) {
       if (!id)
         return NextResponse.json({
           success: false,
-          message: "Please log in!",
+          message: "Lütfen giriş yapın!",
         });
       const extractAllCartItems = await Cart.find({ userID: id }).populate(
         "productID"
@@ -29,20 +29,20 @@ export async function GET(req) {
       } else {
         return NextResponse.json({
           success: false,
-          message: "No Cart items are found !",
+          message: "Sepet öğesi bulunamadı !",
           status: 204,
         });
       }
     } else {
       return NextResponse.json({
         success: false,
-        message: "You are not authenticated",
+        message: "Doğrulama sağlanamadı",
       });
     }
   } catch (e) {
     return NextResponse.json({
       success: false,
-      message: "Something went wrong ! Please try again",
+      message: "Bir şey yanlış gitti ! Lütfen tekrar deneyiniz",
     });
   }
 }

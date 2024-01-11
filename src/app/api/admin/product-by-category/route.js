@@ -20,14 +20,14 @@ export async function GET(req) {
       return NextResponse.json({
         success: false,
         status: 204,
-        message: "No Products found !",
+        message: "Ürün bulunamadı !",
       });
     }
   } catch (e) {
     console.log(error);
     return NextResponse.json({
       success: false,
-      message: "Something went wrong ! Please try again later",
+      message: "Bir şey yanlış gitti ! Lütfen tekrar deneyiniz",
     });
   }
 }

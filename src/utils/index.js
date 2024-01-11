@@ -38,9 +38,24 @@ export const primaryHeaderOptions = [
     path: "/product/listing/acoustic-guitars",
   },
   {
+    id: "efektVePedal",
+    label: "Efektler ve Pedallar",
+    path: "/product/listing/efekt-pedal",
+  },
+  {
     id: "DJStüdyo",
     label: "DJ / Stüdyo",
     path: "/product/listing/dj-studio",
+  },
+  {
+    id: "seslendirme",
+    label: "Seslendirme",
+    path: "/product/listing/seslendirme",
+  },
+  {
+    id: "nefesliler",
+    label: "Nefesliler",
+    path: "/product/listing/nefesliler",
   },
 ];
 export const secondaryHeaderOptions = [

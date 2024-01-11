@@ -14,7 +14,7 @@ export async function GET(req) {
       return NextResponse.json({
         success: false,
         status: 400,
-        message: "Seller id is required",
+        message: "Satıcı ID si gerekli",
       });
     }
     const getData = await Product.find({ sellerID: sellerId});
@@ -25,14 +25,14 @@ export async function GET(req) {
       return NextResponse.json({
         success: false,
         status: 204,
-        message: "No Product found",
+        message: "Ürün bulunamadı !",
       });
     }
   } catch (error) {
     console.log(error);
     return NextResponse.json({
       success: false,
-      message: "Something went wrong ! Please try again later",
+      message: "Bir şey yanlış gitti ! Lütfen tekrar deneyiniz",
     });
   }
 }

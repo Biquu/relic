@@ -29,7 +29,7 @@ export async function POST(req) {
     if (!checkUser) {
       return NextResponse.json({
         success: false,
-        message: "Bu e-postaya sahir bir hesap bulunamadı !",
+        message: "Bu e-postaya sahip bir hesap bulunamadı !",
       });
     }
 

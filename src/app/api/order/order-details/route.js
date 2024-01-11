@@ -17,7 +17,7 @@ export async function GET(req) {
       if (!id)
         return NextResponse.json({
           success: false,
-          message: "Product ID is required",
+          message: "Ürün kimliği gerekli",
         });
 
       const extractOrderDetails = await Order.findById(id).populate(
@@ -32,19 +32,19 @@ export async function GET(req) {
       } else {
         return NextResponse.json({
           success: false,
-          message: "Failed to get order details ! Please try again",
+          message: "Sipariş ayrıntıları alınamadı! Lütfen tekrar deneyin",
         });
       }
     } else {
       return NextResponse.json({
         success: false,
-        message: "You are not authticated",
+        message: "Doğrulama sağlanamadı",
       });
     }
   } catch (e) {
     return NextResponse.json({
       success: false,
-      message: "Something went wrong ! Please try again later",
+      message: "Bir şey yanlış gitti ! Lütfen tekrar deneyiniz",
     });
   }
 }

@@ -37,7 +37,7 @@ export default function ProductTile({ item }) {
         />
       </div>
       <div className="my-4 mx-auto flex w-10/12 flex-col items-start justify-between">
-        <h3 className=" overflow-ellipsis overflow-hidden line-clamp-2 mr-3 text-gray-600 text-sm mb-2">
+        <h3 className=" overflow-ellipsis overflow-hidden line-clamp-2 mr-3 text-gray-600 text-sm mb-2 h-10">
           {item.name}
         </h3>
         <div className="mb-2 flex flex-col">

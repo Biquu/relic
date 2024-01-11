@@ -12,7 +12,7 @@ module.exports = {
           'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
       },
       colors: {
-        customPurple: '#4C3575',
+        customPurple: '#25053E ',
         customPurple2: '#8EA7E9',
         customLight: '#FAF0E6',
         customLight2: '#FAF0E6',

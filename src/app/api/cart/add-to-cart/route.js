@@ -43,7 +43,7 @@ export async function POST(req) {
         return NextResponse.json({
           success: false,
           message:
-            "Product is already added in cart! Please add different product",
+            "Ürün zaten sepete eklendi! Lütfen farklı ürün ekleyin",
         });
       }
 
@@ -54,25 +54,25 @@ export async function POST(req) {
       if (saveProductToCart) {
         return NextResponse.json({
           success: true,
-          message: "Product is added to cart !",
+          message: "Ürün sepete eklendi !",
         });
       } else {
         return NextResponse.json({
           success: false,
-          message: "failed to add the product to cart ! Please try again.",
+          message: "Ürünü sepet eklenemedi! Lütfen tekrar deneyin.",
         });
       }
     } else {
       return NextResponse.json({
         success: false,
-        message: "You are not authenticated",
+        message: "Doğrulama sağlanamadı",
       });
     }
   } catch (e) {
     console.log(e);
     return NextResponse.json({
       success: false,
-      message: "Something went wrong ! Please try again later",
+      message: "Bir şey yanlış gitti ! Lütfen tekrar deneyiniz",
     });
   }
 }

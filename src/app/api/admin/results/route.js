@@ -15,7 +15,7 @@ export async function GET(req) {
       return NextResponse.json({
         success: false,
         status: 400,
-        message: "Search query is required",
+        message: "Arama sorgusu gerekli",
       });
     }
 
@@ -39,14 +39,14 @@ export async function GET(req) {
       return NextResponse.json({
         success: false,
         status: 204,
-        message: "No products found",
+        message: "Ürün bulunamadı !",
       });
     }
   } catch (error) {
     console.log(error);
     return NextResponse.json({
       success: false,
-      message: "Something went wrong! Please try again later",
+      message: "Bir şey yanlış gitti ! Lütfen tekrar deneyiniz",
     });
   }
 }

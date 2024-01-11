@@ -56,29 +56,13 @@ function NavItems({ isModalView = false, isAdminView, router }) {
 }
 function SubNavbar({ router }) {
   return (
-    <div className="bg-white fixed w-full z-20 border-t border-b border-gray-200">
+    <div className=" fixed w-full z-20 border-t border-gray-200 bg-customPurple">
       <div className="flex justify-between mx-auto text-black text-sm">
         {/* Primary Header Options */}
-        <ul className="flex items-center justify-between mx-auto">
+        <ul className="flex items-center justify-between mx-auto py-1">
           {primaryHeaderOptions.map((item) => (
             <li
-              className="cursor-pointer text-customPurple px-8 last:border-r-0"
-              key={item.id}
-              onClick={() => router.push(item.path)}
-            >
-              {item.label}
-            </li>
-          ))}
-        </ul>
-
-        {/* Separator Line */}
-        <div className="border-r h-10 my-auto"></div>
-
-        {/* Secondary Header Options */}
-        <ul className="flex items-center justify-between mx-auto">
-          {secondaryHeaderOptions.map((item) => (
-            <li
-              className="cursor-pointer text-customPurple px-8"
+              className="cursor-pointer text-white px-8 last:border-r-0"
               key={item.id}
               onClick={() => router.push(item.path)}
             >
@@ -236,7 +220,7 @@ export default function Navbar() {
               aria-expanded="false"
               onClick={() => setShowNavModal(true)}
             >
-              <span className="sr-only">Open main menu</span>
+              <span className="sr-only">Ana Menü</span>
               <svg
                 className="w-6 h-6"
                 aria-hidden="true"

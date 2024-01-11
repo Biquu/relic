@@ -28,7 +28,7 @@ export async function POST(req) {
     } else {
       return NextResponse.json({
         success: true,
-        message: "You are not authenticated",
+        message: "Doğrulama sağlanamadı",
       });
     }
   } catch (e) {
@@ -36,7 +36,7 @@ export async function POST(req) {
     return NextResponse.json({
       status: 500,
       success: false,
-      message: "Something went wrong ! Please try again",
+      message: "Bir şey yanlış gitti ! Lütfen tekrar deneyiniz",
     });
   }
 }

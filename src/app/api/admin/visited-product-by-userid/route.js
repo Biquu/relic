@@ -19,7 +19,7 @@ export async function GET(req) {
       return NextResponse.json({
         success: false,
         status: 400,
-        message: "User id is required",
+        message: "Kullanıcı id si gerekli",
       });
     }
 
@@ -93,14 +93,14 @@ export async function GET(req) {
       return NextResponse.json({
         success: false,
         status: 204,
-        message: "No Product found for the given user",
+        message: "Bu kullanıcı id sine sahip Ürün bulunamadı !",
       });
     }
   } catch (error) {
     console.error("Error:", error);
     return NextResponse.json({
       success: false,
-      message: "Something went wrong! Please try again later",
+      message: "Bir şey yanlış gitti ! Lütfen tekrar deneyiniz",
     });
   }
 }

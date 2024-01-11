@@ -29,14 +29,14 @@ export async function POST(req) {
     }else{
       return NextResponse.json({
         success: false,
-        message: "kullanıcı algılanamadı"
+        message: "Doğrulama sağlanamadı"
       })
     }
   } catch (error) {
     console.log(error);
     return NextResponse.json({
       success: false,
-      message: "Something went wrong ! Please try again later",
+      message: "Bir şey yanlış gitti ! Lütfen tekrar deneyiniz",
     });
   }
 }
