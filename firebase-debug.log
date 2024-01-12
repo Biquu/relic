@@ -1,0 +1,106 @@
+[debug] [2024-01-12T13:34:49.472Z] ----------------------------------------------------------------------
+[debug] [2024-01-12T13:34:49.474Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\biquu\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js init hosting
+[debug] [2024-01-12T13:34:49.475Z] CLI Version:   13.0.3
+[debug] [2024-01-12T13:34:49.475Z] Platform:      win32
+[debug] [2024-01-12T13:34:49.475Z] Node Version:  v20.10.0
+[debug] [2024-01-12T13:34:49.475Z] Time:          Fri Jan 12 2024 16:34:49 GMT+0300 (GMT+03:00)
+[debug] [2024-01-12T13:34:49.475Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2024-01-12T13:34:49.530Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2024-01-12T13:34:49.530Z] > authorizing via signed-in user (bilalergindemirci@gmail.com)
+[info] 
+     ######## #### ########  ######## ########     ###     ######  ########
+     ##        ##  ##     ## ##       ##     ##  ##   ##  ##       ##
+     ######    ##  ########  ######   ########  #########  ######  ######
+     ##        ##  ##    ##  ##       ##     ## ##     ##       ## ##
+     ##       #### ##     ## ######## ########  ##     ##  ######  ########
+
+You're about to initialize a Firebase project in this directory:
+
+  C:\Users\biquu\Desktop\projects\relic
+
+Before we get started, keep in mind:
+
+  * You are initializing within an existing Firebase project directory
+
+[info] 
+=== Project Setup
+[info] 
+[info] First, let's associate this project directory with a Firebase project.
+[info] You can create multiple project aliases by running firebase use --add, 
+[info] but for now we'll just set up a default project.
+[info] 
+[debug] [2024-01-12T13:34:51.403Z] Using project from CLI flag: deneme-fd0f9
+[debug] [2024-01-12T13:34:51.405Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/deneme-fd0f9 [none]
+[debug] [2024-01-12T13:34:51.759Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/deneme-fd0f9 200
+[debug] [2024-01-12T13:34:51.760Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/deneme-fd0f9 {"projectId":"deneme-fd0f9","projectNumber":"574683319824","displayName":"deneme","name":"projects/deneme-fd0f9","resources":{"hostingSite":"deneme-fd0f9","realtimeDatabaseInstance":"deneme-fd0f9-default-rtdb","storageBucket":"deneme-fd0f9.appspot.com","locationId":"us-central"},"state":"ACTIVE","etag":"1_b139ee81-847c-425f-b28f-a6282572de13"}
+[info] i  Using project deneme-fd0f9 (deneme) 
+[info] 
+=== Hosting Setup
+[debug] [2024-01-12T13:34:51.764Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/deneme-fd0f9 [none]
+[debug] [2024-01-12T13:34:51.973Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/deneme-fd0f9 200
+[debug] [2024-01-12T13:34:51.973Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/deneme-fd0f9 {"projectId":"deneme-fd0f9","projectNumber":"574683319824","displayName":"deneme","name":"projects/deneme-fd0f9","resources":{"hostingSite":"deneme-fd0f9","realtimeDatabaseInstance":"deneme-fd0f9-default-rtdb","storageBucket":"deneme-fd0f9.appspot.com","locationId":"us-central"},"state":"ACTIVE","etag":"1_b139ee81-847c-425f-b28f-a6282572de13"}
+[info] 
+[info] Your public directory is the folder (relative to your project directory) that
+[info] will contain Hosting assets to be uploaded with firebase deploy. If you
+[info] have a build process for your assets, use your build's output directory.
+[info] 
+[debug] [2024-01-12T13:35:03.561Z] >>> [apiv2][query] GET https://www.gstatic.com/firebasejs/releases.json [none]
+[debug] [2024-01-12T13:35:03.689Z] <<< [apiv2][status] GET https://www.gstatic.com/firebasejs/releases.json 200
+[debug] [2024-01-12T13:35:03.689Z] <<< [apiv2][body] GET https://www.gstatic.com/firebasejs/releases.json {"current":{"version":"10.7.1","browserURL":"https://www.gstatic.com/firebasejs/10.7.1/firebase.js","packageURL":"https://www.gstatic.com/firebasejs/10.7.1/firebase.tgz"},"live":{"version":"10.7","browserURL":"https://www.gstatic.com/firebasejs/live/10.7/firebase.js","packageURL":"https://www.gstatic.com/firebasejs/live/10.7/firebase.tgz"},"components":{"analytics":"https://www.gstatic.com/firebasejs/10.7.1/firebase-analytics.js","app":"https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js","app-check":"https://www.gstatic.com/firebasejs/10.7.1/firebase-app-check.js","auth":"https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js","auth/cordova":"https://www.gstatic.com/firebasejs/10.7.1/firebase-auth/cordova.js","functions":"https://www.gstatic.com/firebasejs/10.7.1/firebase-functions.js","firestore":"https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js","firestore/lite":"https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore/lite.js","installations":"https://www.gstatic.com/firebasejs/10.7.1/firebase-installations.js","storage":"https://www.gstatic.com/firebasejs/10.7.1/firebase-storage.js","performance":"https://www.gstatic.com/firebasejs/10.7.1/firebase-performance.js","remote-config":"https://www.gstatic.com/firebasejs/10.7.1/firebase-remote-config.js","messaging":"https://www.gstatic.com/firebasejs/10.7.1/firebase-messaging.js","messaging/sw":"https://www.gstatic.com/firebasejs/10.7.1/firebase-messaging/sw.js","database":"https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js","firestore.memory":"https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.memory.js"}}
+[info] +  Wrote public/index.html 
+[info] 
+[info] i  Detected a .git folder at C:\Users\biquu\Desktop\projects\relic 
+[info] i  Authorizing with GitHub to upload your service account to a GitHub repository's secrets store. 
+[info] 
+[info] Visit this URL on this device to log in:
+[info] https://github.com/login/oauth/authorize?client_id=89cf50f02ac6aaed3484&state=356894777&redirect_uri=http%3A%2F%2Flocalhost%3A9005&scope=read%3Auser%20repo%20public_repo
+[info] 
+[info] Waiting for authentication...
+[debug] [2024-01-12T13:36:36.871Z] ----------------------------------------------------------------------
+[debug] [2024-01-12T13:36:36.873Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\biquu\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js init hosting
+[debug] [2024-01-12T13:36:36.873Z] CLI Version:   13.0.3
+[debug] [2024-01-12T13:36:36.873Z] Platform:      win32
+[debug] [2024-01-12T13:36:36.873Z] Node Version:  v20.10.0
+[debug] [2024-01-12T13:36:36.873Z] Time:          Fri Jan 12 2024 16:36:36 GMT+0300 (GMT+03:00)
+[debug] [2024-01-12T13:36:36.873Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2024-01-12T13:36:36.936Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2024-01-12T13:36:36.936Z] > authorizing via signed-in user (bilalergindemirci@gmail.com)
+[info] 
+     ######## #### ########  ######## ########     ###     ######  ########
+     ##        ##  ##     ## ##       ##     ##  ##   ##  ##       ##
+     ######    ##  ########  ######   ########  #########  ######  ######
+     ##        ##  ##    ##  ##       ##     ## ##     ##       ## ##
+     ##       #### ##     ## ######## ########  ##     ##  ######  ########
+
+You're about to initialize a Firebase project in this directory:
+
+  C:\Users\biquu\Desktop\projects\relic
+
+Before we get started, keep in mind:
+
+  * You are initializing within an existing Firebase project directory
+
+[info] 
+=== Project Setup
+[info] 
+[info] First, let's associate this project directory with a Firebase project.
+[info] You can create multiple project aliases by running firebase use --add, 
+[info] but for now we'll just set up a default project.
+[info] 
+[debug] [2024-01-12T13:36:39.603Z] Using project from CLI flag: deneme-fd0f9
+[debug] [2024-01-12T13:36:39.605Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/deneme-fd0f9 [none]
+[debug] [2024-01-12T13:36:40.060Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/deneme-fd0f9 200
+[debug] [2024-01-12T13:36:40.060Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/deneme-fd0f9 {"projectId":"deneme-fd0f9","projectNumber":"574683319824","displayName":"deneme","name":"projects/deneme-fd0f9","resources":{"hostingSite":"deneme-fd0f9","realtimeDatabaseInstance":"deneme-fd0f9-default-rtdb","storageBucket":"deneme-fd0f9.appspot.com","locationId":"us-central"},"state":"ACTIVE","etag":"1_b139ee81-847c-425f-b28f-a6282572de13"}
+[info] i  Using project deneme-fd0f9 (deneme) 
+[info] 
+=== Hosting Setup
+[debug] [2024-01-12T13:36:40.064Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/deneme-fd0f9 [none]
+[debug] [2024-01-12T13:36:40.355Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/deneme-fd0f9 200
+[debug] [2024-01-12T13:36:40.355Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/deneme-fd0f9 {"projectId":"deneme-fd0f9","projectNumber":"574683319824","displayName":"deneme","name":"projects/deneme-fd0f9","resources":{"hostingSite":"deneme-fd0f9","realtimeDatabaseInstance":"deneme-fd0f9-default-rtdb","storageBucket":"deneme-fd0f9.appspot.com","locationId":"us-central"},"state":"ACTIVE","etag":"1_b139ee81-847c-425f-b28f-a6282572de13"}
+[info] 
+[info] Your public directory is the folder (relative to your project directory) that
+[info] will contain Hosting assets to be uploaded with firebase deploy. If you
+[info] have a build process for your assets, use your build's output directory.
+[info] 

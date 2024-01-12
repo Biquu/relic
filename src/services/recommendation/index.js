@@ -104,42 +104,39 @@ async function recommendProducts(model, numProducts, originalIndices) {
   return recommendedProducts;
 }
 
-// Fonksiyon: Kullanıcı için önerileri çalıştır
-// async function runRecommendationForUser(userID) {
-//   try {
-//     // Kullanıcının ziyaret ettiği ürünleri al
-//     const user = await AllVisitedProductbyUserID(userID);
-//     const userData = user.data;
+async function runRecommendationForUser(userID) {
+  try {
+    // Kullanıcının ziyaret ettiği ürünleri al
+    const user = await AllVisitedProductbyUserID(userID);
+    const userData = user.data;
 
-//     // Modeli eğit
-//     // const trainedModel = await trainModel(userData);
+    // Modeli eğit
+    const trainedModel = await trainModel(userData);
 
-//     const scores = recommendationScore(userData);
+    const scores = recommendationScore(userData);
 
-//     const sortedScores = Object.keys(scores)
-//       .sort((a, b) => scores[b] - scores[a])
-//       .slice(0, 6);
+    const sortedScores = Object.keys(scores)
+      .sort((a, b) => scores[b] - scores[a])
+      .slice(0, 6);
 
-//     return sortedScores;
+    console.log(sortedScores, scores, userData);
 
-//     //console.log(sortedScores, scores, userData)
-
-//     // Öneri skorlarını kullanarak en yüksek puan alan 6 ürünü al
-//     // const topRecommendationss = Object.keys(recommendationScores[userID])
-//     //   .sort(
-//     //     (a, b) =>
-//     //       recommendationScores[userID][b] - recommendationScores[userID][a]
-//     //   )
-//     //   .slice(0, 6);
-//   } catch (error) {
-//     console.error("Error:", error);
-//   }
-// }
+    // Öneri skorlarını kullanarak en yüksek puan alan 6 ürünü al
+    const topRecommendationss = Object.keys(recommendationScores[userID])
+      .sort(
+        (a, b) =>
+          recommendationScores[userID][b] - recommendationScores[userID][a]
+      )
+      .slice(0, 6);
+  } catch (error) {
+    console.error("Error:", error);
+  }
+}
 
 // export default  function recommendation(userID) {
 
 //   async function recommendationScore() {
-    
+
 //     const user = await AllVisitedProductbyUserID(userID);
 //     const userData = user.data;
 
