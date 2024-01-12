@@ -88,7 +88,7 @@ export default function Navbar() {
     setShowCartModal,
   } = useContext(GlobalContext);
 
-  const [searchQuery, setSearchQuery] = useState(); //zort
+  const [searchQuery, setSearchQuery] = useState(); 
 
   const pathName = usePathname();
   const router = useRouter();
@@ -180,7 +180,7 @@ export default function Navbar() {
                   }
                   onClick={() => router.push("/")}
                 >
-                  Client View
+                  Alışveriş Yap
                 </button>
               ) : (
                 <button

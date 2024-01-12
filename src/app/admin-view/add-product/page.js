@@ -160,7 +160,7 @@ export default function AdminAddNewProduct() {
       setFormData(initialFormData);
       setCurrentUpdatedProduct(null);
       setTimeout(() => {
-        router.push("/admin-view/all-products");
+        router.push("/admin-view/products");
       }, 1000);
     } else {
       toast.error(res.message, {

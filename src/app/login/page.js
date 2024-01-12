@@ -122,7 +122,7 @@ export default function Login() {
                      "
                     onClick={() => router.push("/register")}
                   >
-                    Register
+                    Kayıt ol
                   </button>
                 </div>
               </div>

@@ -22,6 +22,7 @@ const protectedAdminRoutes = [
   "/admin-view",
   "/admin-view/add-product",
   "/admin-view/all-products",
+  "/admin-view/products"
 ];
 
 export default function GlobalState({ children }) {

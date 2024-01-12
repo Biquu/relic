@@ -109,10 +109,7 @@ export default function Home() {
                               {productItem.name}
                             </h3>
                             <p className="mt-1 text-sm text-red-700">
-                              {(productItem.price *
-                                (100 - productItem.priceDrop)) /
-                                100}
-                              TL{" "}
+                              {productItem.price * (100 - productItem.priceDrop)/100}TL{" "}
                               <span className="text-red-700">{`-${productItem.priceDrop}%`}</span>
                             </p>
                           </div>
@@ -146,7 +143,7 @@ export default function Home() {
               {
                 imageUrl:
                   "https://images.unsplash.com/photo-1528303538427-209fc9098e73?q=80&w=2063&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-                category: "drums-percussion",
+                category: "drums-and-percussion",
                 title: "Davul ve Perküsyon",
               },
               {

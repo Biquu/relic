@@ -115,7 +115,7 @@ export const registrationFormControls = [
     id: "role",
     type: "",
     placeholder: "",
-    label: "Role",
+    label: "Rol",
     componentType: "select",
     options: [
       {

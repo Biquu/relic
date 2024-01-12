@@ -36,14 +36,7 @@ const ScrollableRecommendations = ({ recommendedProducts }) => {
     ],
   });
 
-  useEffect(() => {
-    if (recommendedProducts.length < 4) {
-      setSliderSettings((prevSettings) => ({
-        ...prevSettings,
-        slidesToShow: recommendedProducts.length,
-      }));
-    }
-  }, [recommendedProducts]);
+  
 
   return (
     <div className="bg-white shadow-md p-6 sm:p-8 mt-4 sm:pt-8 mb-8">
